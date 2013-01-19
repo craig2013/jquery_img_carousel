@@ -1,0 +1,128 @@
+            body, html{
+                font-family: arial,helvetica, sans-serif;
+                font-size: small;
+            }
+            a{
+                color: #000;
+                text-decoration: none;
+            }
+            #slider1 {
+                width: 640px;
+                position: relative;
+                margin: 20px auto;
+            }
+            
+            #slider1 .visible-area {
+                width: 640px;
+                height: 480px;
+                overflow: hidden;
+                position: relative;
+            }
+            
+            #slider1 .visible-area .carousel-thumbs{
+                display: block;
+                float: right;
+                height: 100%;
+                left: 0;
+                margin: 0px;
+                position: relative;
+                width: 23%;
+            }
+            
+            #slider1 .slider {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            
+            #slider1 .slider img {
+                float: left;
+            }
+            
+            #slider1 .slider-nav .left-nav{
+                float: left;
+                height: 30px;
+            }
+            
+            #slider1 .slider-nav .left-nav .previous {
+                width: 100px;
+                color: #fff;                
+                margin-top: 10px;
+                background: #f00;
+                line-height: 28px;
+                text-align: center;
+                text-decoration: none;
+                -moz-border-radius: 5px;
+                -webkit-border-radius: 5px;
+                border-radius: 5px;
+            }
+            
+            #slider1 .slider-nav .slider-numbers{
+                float: left;
+                font-family: arial,helvetica,sans-serif;
+                padding: 0px 0px 0px 10px;
+                text-align: center;
+            }
+            
+            #slider1 .slider-nav .slider-numbers .slider-number{
+                float: left;
+                margin: 7px 0px 0px 0px;
+                width: 25px;
+            }
+
+            #slider1 .slider-nav .slider-numbers .slider-number a{
+                text-decoration: none;
+            }
+            
+            #slider1 .slider-nav .slider-numbers .slider-number.highlight{
+                background: #f00;
+            }
+            
+            #slider1 .slider-nav .slider-numbers .slider-number.highlight a{
+                color: #fff;    
+            }
+            
+            #slider1 .slider-nav .right-nav {
+                float: right;
+                height: 30px;
+            }            
+            
+            #slider1 .slider-nav .right-nav .next {
+                width: 100px;
+                color: #fff;                
+                margin-top: 10px;
+                background: #f00;
+                line-height: 28px;
+                text-align: center;
+                text-decoration: none;
+                -moz-border-radius: 5px;
+                -webkit-border-radius: 5px;
+                border-radius: 5px;
+            }
+            
+            
+            #slider1 .slider-nav .selector-nav{
+                margin: 10px auto 0px auto;
+                text-align:center;
+                width: 80%;                
+            }
+            
+            #slider1 .slider-nav .selector-nav .selector li{
+                display: inline;
+                list-style-type: circle;
+            }
+            
+            #slider1 .slider-nav .control-nav{
+                float: right;
+                height: 30px;
+                margin: 5px 10px 0px auto;
+            }
+            
+            #slider1 .slider-nav .control-nav .play-nav{
+                display: none;
+            }
+            
+            
+            .clear {
+                clear: both;
+            } 

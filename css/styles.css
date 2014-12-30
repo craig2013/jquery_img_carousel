@@ -2,7 +2,7 @@
                 font-family: arial,helvetica, sans-serif;
                 font-size: small;
             }
-            a{
+            a {
                 color: #000;
                 text-decoration: none;
             }
@@ -13,20 +13,10 @@
             }
             
             #slider1 .visible-area {
-                width: 640px;
-                height: 480px;
+                width: auto;
+                height: 150px;
                 overflow: hidden;
                 position: relative;
-            }
-            
-            #slider1 .visible-area .carousel-thumbs{
-                display: block;
-                float: right;
-                height: 100%;
-                left: 0;
-                margin: 0px;
-                position: relative;
-                width: 23%;
             }
             
             #slider1 .slider {
@@ -39,7 +29,7 @@
                 float: left;
             }
             
-            #slider1 .slider-nav .left-nav{
+            #slider1 .slider-nav .left-nav {
                 float: left;
                 height: 30px;
             }
@@ -57,30 +47,26 @@
                 border-radius: 5px;
             }
             
-            #slider1 .slider-nav .slider-numbers{
+            #slider1 .slider-nav .slider-numbers {
                 float: left;
                 font-family: arial,helvetica,sans-serif;
-                padding: 0px 0px 0px 10px;
+                padding: 0 0 0 10px;
                 text-align: center;
             }
             
-            #slider1 .slider-nav .slider-numbers .slider-number{
+            #slider1 .slider-nav .slider-numbers .slider-number {
+                color: #000;
                 float: left;
-                margin: 7px 0px 0px 0px;
+                margin: 7px 0 0 0;
+                text-decoration: none;
                 width: 25px;
             }
-
-            #slider1 .slider-nav .slider-numbers .slider-number a{
-                text-decoration: none;
-            }
             
-            #slider1 .slider-nav .slider-numbers .slider-number.highlight{
+            #slider1 .slider-nav .slider-numbers .slider-number.highlight-slide-number {
                 background: #f00;
+                color: #fff;   
             }
             
-            #slider1 .slider-nav .slider-numbers .slider-number.highlight a{
-                color: #fff;    
-            }
             
             #slider1 .slider-nav .right-nav {
                 float: right;

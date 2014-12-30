@@ -1,117 +1,193 @@
-            $.widget("nmk.carousel",{ 
-                options: { 
-                  visibleArea: null,   //Identifies the wrapper id used for carousel
-                  wrapper: null,
-                  autoScroll: null,
-                  autoScrollTime: null,
-                },             
-                _create: function(){
-                    _self = this;
-                    $('.slider img:first').addClass('active');                    // Here we are assigning a class "active" to the first image in the "slider" div.
-                    $('.slider-numbers .slider-number:first').addClass('highlight');    //Highlight first item is current
-                 
-                    this.imageWidth = $(this.options.visibleArea).width();
-                    this.totalImages =   $(this.options.visibleArea+' img').size();
-                    this.sliderWidth = this.imageWidth * this.totalImages;
-                    
-                    $(this.options.visibleArea + ' .slider').css({'width': this.sliderWidth});
-                    
-                    $('.slider-numbers #picture-1').addClass('highlight');
-                    
-                    $(this.options.wrapper + ' .slider-nav .next').click(function(e){
-                       _self._next(); 
-                    });
-                    
-                    $(this.options.wrapper + ' .slider-nav .previous').click(function(e){
-                       _self._previous(); 
-                    });
-                    
-                    if(this.options.autoScroll)
-                      _self._autoScroll(this);
-                    
-                    
-                    $(this.options.wrapper + ' .slider-nav .control-nav .pause-nav .pause-button').click(function(e){
-                        _self._pauseAutoScroll(_self);
-                    });
+/*!
+ * jQuery lightweight plugin boilerplate
+ * Original author: @ajpiano
+ * Further changes, comments: @addyosmani
+ * Licensed under the MIT license
+ */
 
-                     $(this.options.wrapper + ' .slider-nav .control-nav .play-nav .play-button').click(function(e){
-                        _self._resumeAutoScroll(_self);
-                    });
-                     
-                     $(this.options.wrapper + ' .slider-numbers .slider-number a').click(function(){
-                        _self._clicked($(this).closest('div').attr('title'));
-                     });
-                },
-                _next: function(){
-                    $active = $('.slider img.active').next();                 // On click of next button, we are saving the image (next to "active" image) in a jQuery variable $active
-                    if ($active.length==0)                                 // If this is the last image inside the "slider" div, and there is no image after that, then go back to the first image in "slider" div and save it in a variable $active. 
-                            $active = $('.slider img:first');
-                    
-                    $('.slider img').removeClass('active');                   // Remove class active from the images inside slider div.
-                    $active.addClass('active');                               // Add the class active to the $active (next image).
-                
-                    count = $active.attr('alt') -1;                       
-                    sliderposition = count * this.imageWidth;                  // Here we are calculating, how much "slider" div will slide on click of next button, and we are saving it in a variable "sliderposition".
-                    //console.log($active);
-                    $('.slider').animate({'left': -sliderposition}, 500);     // Here we are using the jQuery animate method to slide the "slider" div.
-                    
-                    sliderNavPrev = $('.slider img.active').attr('alt');
-                    sliderNavCur = $('.slider img.active').attr('alt');
-                    
-                    sliderNavPrev = ($('.slider img:first').attr('class')==='active') ? parseInt($('.slider img:last').attr('alt')) : sliderNavPrev = parseInt(sliderNavPrev)-1; 
-                    
-                    $('.slider-numbers div[title=picture-' + sliderNavPrev + ']').removeClass('highlight');
-                    $('.slider-numbers div[title=picture-' + sliderNavCur + ']').addClass('highlight');
-                },
-                _previous: function(){
-                    $active = $('.slider img.active').prev();                 // On click of previous button, we are saving the image (previous to "active" image) in a jQuery variable $active.
-                    if ($active.length==0)                                  // If this is the first image inside the "slider" div, and there is no image before that, then go back to the last image in "slider" div and save it in a variable $active. 
-                            $active = $('.slider img:last');
-                            
-                    $('.slider img').removeClass('active');  // Remove class active from the images inside slider div.
-                    $active.addClass('active');                  // Add the class active to the $active (next image).
-                    
-                    count = $active.attr('alt') -1;                       
-                    sliderposition = count * this.imageWidth;                  // Here we are calculating, how much "slider" div will slide on click of next button, and we are saving it in a variable "sliderposition".
+// the semi-colon before the function invocation is a safety
+// net against concatenated scripts and/or other plugins
+// that are not closed properly.
+;(function ( $, window, document, undefined ) {
 
-                    $('.slider').animate({'left': -sliderposition}, 500);     // Here we are using the jQuery animate method to slide the "slider" div.
+    // undefined is used here as the undefined global
+    // variable in ECMAScript 3 and is mutable (i.e. it can
+    // be changed by someone else). undefined isn't really
+    // being passed in so we can ensure that its value is
+    // truly undefined. In ES5, undefined can no longer be
+    // modified.
 
-                    sliderNavCur = $('.slider img.active').attr('alt');
-                    sliderNavPrev = $('.slider img.active').attr('alt');              
- 
-                    sliderNavPrev = ($('.slider img:last').attr('class')==='active') ? parseInt($('.slider img:first').attr('alt')) : sliderNavPrev = parseInt(sliderNavPrev)+1; 
-                    
-                    $('.slider-numbers div[title=picture-' + sliderNavPrev + ']').removeClass('highlight');
-                    $('.slider-numbers div[title=picture-' + sliderNavCur + ']').addClass('highlight');                   
-                },
-                _clicked: function(img){
-                    sliderNavCur = $('.slider img.active').attr('alt');
-                    clickedImg = parseInt(img.replace('picture-',''));
-                    sliderposition = (clickedImg-1) * this.imageWidth;
-                    $active = $('.slider img.active');
-                    
-                    $active.removeClass('active');
-                    
-                    $('.slider').animate({'left': -sliderposition}, 500);
-                    
-                    $('.slider img[alt=' + clickedImg + ']').addClass('active');
-                    
-                    $('.slider-numbers div[title=picture-' + sliderNavCur + ']').removeClass('highlight');
-                    $('.slider-numbers div[title=picture-' + clickedImg + ']').addClass('highlight');                     
-                },
-               _autoScroll: function(t){
-                    t.intervalId = setInterval(function(){             //Change image based on autoScroll time
-                        t._next();
-                    }, this.options.autoScrollTime); 
-                },
-                _pauseAutoScroll: function(t){
-                    clearInterval(t.intervalId);
-                    $(t.options.wrapper + ' .slider-nav .control-nav .pause-nav').css('display','none');
-                    $(t.options.wrapper + ' .slider-nav .control-nav .play-nav').css('display','block');                  
-                },
-                _resumeAutoScroll: function(t){
-                    t._autoScroll(t);
-                    $(t.options.wrapper + ' .slider-nav .control-nav .pause-nav').css('display','block');
-                    $(t.options.wrapper + ' .slider-nav .control-nav .play-nav').css('display','none');                     
+    // window and document are passed through as local
+    // variables rather than as globals, because this (slightly)
+    // quickens the resolution process and can be more
+    // efficiently minified (especially when both are
+    // regularly referenced in your plugin).
+
+    // Create the defaults once
+    var pluginName = "carousel",
+        defaults = {
+            autoScroll: true,
+            autoScrollTime: 10000,
+            direction: "left",
+            height: null,
+            sliderNav: true,
+            width: null
+        };
+
+    // The actual plugin constructor
+    function Plugin( element, options ) {
+        this.element = element;
+
+        // jQuery has an extend method that merges the
+        // contents of two or more objects, storing the
+        // result in the first object. The first object
+        // is generally empty because we don't want to alter
+        // the default options for future instances of the plugin
+        this.options = $.extend( {}, defaults, options) ;
+
+        this._defaults = defaults;
+        this._name = pluginName;
+
+        this.init();
+    }
+
+    Plugin.prototype = {
+
+        init: function() {
+            var self = this;
+            this.imageWidth = this.options.width;
+            this.totalImages =   $(this.element).find('.visible-area .slider img').length;
+            this.sliderWidth = this.imageWidth * this.totalImages;  
+
+            $(this.element).find('.visible-area .slider').css('width',this.sliderWidth);
+
+            this.setBindings();
+
+            if (this.options.autoScroll) {
+                this.autoScroll();
+            }
+        },
+
+        setBindings: function() {
+            var self = this;
+            $(this.element).on('click', function(e) {
+                e.preventDefault();
+                var $target = $(e.target)[0];
+                var btnClicked = $($target).attr('class').split(' ')[0];
+
+                if (btnClicked === 'btn-next') {
+                    self.nextImg();
+                } else if (btnClicked === 'btn-previous') {
+                    self.previousImg();
+                } else if (btnClicked === 'btn-pause') {
+                    self.pauseAutoScroll();
+                } else if (btnClicked === 'btn-play') {
+                    self.resumeAutoScroll();
+                } else if (btnClicked === 'slider-number') {
+                    self.imageSelected($target);
                 }
             });
+        },
+
+        animateSlide: function($activeImg) {
+            var count = $activeImg.attr('data-slideNumber') - 1;
+            var sliderPosition = count * this.imageWidth;
+            var currentSlide = $activeImg.attr('data-slideNumber');
+            var animateSlider = {};
+
+            animateSlider[this.options.direction] = -sliderPosition;
+
+            $(this.element).find('.slider').animate(animateSlider, 500); 
+        },
+
+        updateSliderNav: function(currentSlide) {
+            if ($(this.element).find('.slider-nav .slider-numbers')) { 
+                $.each($(this.element).find('.slider-nav .slider-numbers .slider-number'), function(i, obj) {
+                    if ($(obj).attr('data-slideNumber') === currentSlide) {
+                        $(obj).addClass('highlight-slide-number');
+                    } else {
+                        $(obj).removeClass('highlight-slide-number');
+                    }
+                });
+            }       
+        },
+
+        autoScroll: function() {
+            var self = this;
+            this.intervalId = setInterval(function() { 
+                var time =    self.options.autoScrollTime / 1000;
+
+                console.log(time);        
+                self.nextImg();
+            }, this.options.autoScrollTime); 
+        },
+
+        pauseAutoScroll: function() {
+            clearInterval(this.intervalId);
+            if (this.options.sliderNav) {
+                $(this.element).find('.slider-nav .control-nav .play-nav').show();
+                $(this.element).find('.slider-nav .control-nav .pause-nav').hide();
+            }            
+        },
+
+        resumeAutoScroll: function() {
+            this.autoScroll();
+            if (this.options.sliderNav) {
+                $(this.element).find('.slider-nav .control-nav .play-nav').hide();
+                $(this.element).find('.slider-nav .control-nav .pause-nav').show();
+            }             
+        },
+
+        nextImg: function() {
+            var $active = (($(this.element).find('.slider img').last().attr('class') !== undefined) && ($(this.element).find('.slider img').last().attr('class').split(' ')[0] === 'active-slide'))? $(this.element).find('.slider img').first() : $(this.element).find('.slider img.active-slide').next();            
+
+            this.animateSlide($active);
+
+            $active.addClass('active-slide').siblings().removeClass('active-slide');
+
+            if (this.options.sliderNav) {
+                this.updateSliderNav($active.attr('data-slideNumber'));
+            }
+        },
+
+        previousImg: function() {
+            var $active = (($(this.element).find('.slider img').first().attr('class') !== undefined) && ($(this.element).find('.slider img').first().attr('class').split(' ')[0] === 'active-slide'))? $(this.element).find('.slider img').last() : $(this.element).find('.slider img.active-slide').prev(); 
+
+            this.animateSlide($active);
+
+            $active.addClass('active-slide').siblings().removeClass('active-slide');
+
+            if (this.options.sliderNav) {
+                this.updateSliderNav($active.attr('data-slideNumber'));
+            }     
+        },
+
+        imageSelected: function($target) {
+            var $target =  $($target);
+            var imgSelected = $target.attr('data-slideNumber');
+
+            this.animateSlide($target);    
+
+            $(this.element).find('.visible-area .slider img[data-slideNumber="'+imgSelected+'"]').addClass('active-slide').siblings().removeClass('active-slide');
+
+            if (this.options.sliderNav) {
+                this.updateSliderNav(imgSelected);
+            }                 
+
+            clearInterval(this.intervalId);
+            this.autoScroll();
+        },        
+    };
+
+    // A really lightweight plugin wrapper around the constructor,
+    // preventing against multiple instantiations
+    $.fn[pluginName] = function ( options ) {
+        return this.each(function () {
+            if (!$.data(this, "plugin_" + pluginName)) {
+                $.data(this, "plugin_" + pluginName,
+                new Plugin( this, options ));
+            }
+        });
+    };
+
+})( jQuery, window, document );

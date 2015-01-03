@@ -1,0 +1,158 @@
+@import "reset";
+@import "mixins";
+body {
+	font-family: arial,  helvetica, sans-serif;
+	font-size: 1em;
+	//Begin slider genral styles
+	.image-carousel {
+		position: relative;
+		.slider-title {
+			text-align: center;
+			@include clearfix();
+		}
+		.visible-area {
+			overflow: hidden;
+			position: relative;
+		    	width: auto;		    	
+		}
+		.slider-nav {
+			//Begin default navigation with numbers, play/pause, and arrows
+			.slider-left-nav {
+				float: left;
+				.slider-arrows {
+					display: inline-block;
+					font-size: 30px;
+					vertical-align: top;
+					zoom: 1;
+					a {
+						color: #000;
+						text-decoration: none;
+						&:hover {
+							text-decoration: underline;
+						}
+					}					
+				}
+				.slider-numbers {
+					display: inline-block;
+					margin: 5px 0 0 5px;
+					zoom: 1;
+				}
+			}
+			.slider-right-nav {
+				float: right;
+				.slider-arrows {
+					display: inline-block;
+					font-size: 30px;
+					vertical-align: top;
+					zoom: 1;
+					a {
+						color: #000;
+						text-decoration: none;
+						&:hover {
+							text-decoration: underline;
+						}
+					}					
+				}
+				.control-nav {
+					display: inline-block;
+					font-size: 1em;
+					margin: 5px 5px 0 0;
+					top: 5px;				
+					zoom: 1;
+					.pause-nav {
+						display: none;
+					}
+				}								
+			}
+
+			//Begin slider nav as bullets CSS
+			.slider-bullets {
+				display: block;
+				margin: 0 auto;
+				text-align: center;
+				width: 100%;
+				.slider-bullet {
+					color: #000;
+					cursor: pointer;
+					display: inline-block;
+					font-size: 35px;
+					text-decoration: none;
+					zoom: 1;
+					.active-slide {
+						color: #f00;
+					}
+				}
+			}			
+			@include clearfix();
+		}
+	}
+
+	//Begin  slider1 CSS
+	#slider1 {
+		margin: 20px auto;
+		width: 640px;	
+		a {
+			color: #000;
+			text-decoration: none;
+			&:hover {
+				text-decoration: underline;
+			}
+		}		
+		.visible-area {
+			height: 150px;
+		}
+		.slider-nav {
+			.slider-numbers {
+				.slider-number.slider-highlight-slide {
+					background: #f00;
+					border-radius: 3px;
+					color: #fff;  	
+					padding: 3px;				
+				}
+			}
+		}
+	}
+	//Begin  slider2 CSS
+	#slider2 {
+		margin: 20px auto;
+		width: 640px;	
+		.visible-area {
+			height: 150px;
+		}	
+	}
+
+	//Begin  slider3 CSS
+	#slider3  {
+		margin: 20px auto;
+		width: 640px;	
+		.visible-area {
+			height: 150px;
+		}	
+		.slider-nav {
+			.slider-bullets {
+				.slider-bullet.slider-highlight-slide {
+					color: #f00;
+				}
+			}
+		}
+	}
+
+	//Begin  slider3 CSS
+	#slider4  {
+		margin: 20px auto;
+		width: 640px;	
+		.visible-area {
+			height: 150px;
+			z-index: 0;
+			a {
+				color: #000;
+			}
+			.slider-left-nav {
+				float: left;
+			}
+			.slider-right-nav {
+				float: right;
+			}
+		}	
+	}	
+}

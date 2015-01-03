@@ -6,7 +6,9 @@
             autoScrollTime: 10000,
             direction: "left",
             height: null,
+            siderArrows: false,
             sliderNav: true,
+            sliderNavType: 'default',
             width: null
         };
 
@@ -53,9 +55,9 @@
                     self.pauseAutoScroll();
                 } else if (btnClicked === 'btn-play') {
                     self.resumeAutoScroll();
-                } else if (btnClicked === 'slider-number') {
+                } else if (btnClicked === 'slider-number' || btnClicked === 'slider-bullet') {
                     self.imageSelected($target);
-                }
+                } 
             });
         },
 
@@ -71,23 +73,27 @@
         },
 
         updateSliderNav: function(currentSlide) {
-            if ($(this.element).find('.slider-nav .slider-numbers')) { 
-                $.each($(this.element).find('.slider-nav .slider-numbers .slider-number'), function(i, obj) {
-                    if ($(obj).attr('data-slideNumber') === currentSlide) {
-                        $(obj).addClass('highlight-slide-number');
-                    } else {
-                        $(obj).removeClass('highlight-slide-number');
-                    }
-                });
+            var $navObject = '';
+
+            if (this.options.sliderNavType === 'default') { 
+                $navObject = $(this.element).find('.slider-nav .slider-numbers .slider-number');
+            } else if (this.options.sliderNavType === 'bullets') {
+                $navObject = $(this.element).find('.slider-nav .slider-bullets .slider-bullet');
             }       
+
+            $navObject.removeClass('slider-highlight-slide');
+
+            $.each($navObject, function(i, obj) {
+                if ($(obj).attr('data-slideNumber') === currentSlide) {
+                    $(obj).addClass('slider-highlight-slide');
+                } 
+            });          
         },
 
         autoScroll: function() {
             var self = this;
             this.intervalId = setInterval(function() { 
-                var time =    self.options.autoScrollTime / 1000;
-
-                console.log(time);        
+                var startTime =    self.options.autoScrollTime / 1000; 
                 self.nextImg();
             }, this.options.autoScrollTime); 
         },
@@ -109,26 +115,26 @@
         },
 
         nextImg: function() {
-            var $active = (($(this.element).find('.slider img').last().attr('class') !== undefined) && ($(this.element).find('.slider img').last().attr('class').split(' ')[0] === 'active-slide'))? $(this.element).find('.slider img').first() : $(this.element).find('.slider img.active-slide').next();            
+            var $activeImg = (($(this.element).find('.slider img').last().attr('class') !== undefined) && ($(this.element).find('.slider img').last().attr('class').split(' ')[0] === 'active-slide'))? $(this.element).find('.slider img').first() : $(this.element).find('.slider img.active-slide').next();            
 
-            this.animateSlide($active);
+            this.animateSlide($activeImg);
 
-            $active.addClass('active-slide').siblings().removeClass('active-slide');
+            $activeImg.addClass('active-slide').siblings().removeClass('active-slide');
 
             if (this.options.sliderNav) {
-                this.updateSliderNav($active.attr('data-slideNumber'));
+                this.updateSliderNav($activeImg.attr('data-slideNumber'));
             }
         },
 
         previousImg: function() {
-            var $active = (($(this.element).find('.slider img').first().attr('class') !== undefined) && ($(this.element).find('.slider img').first().attr('class').split(' ')[0] === 'active-slide'))? $(this.element).find('.slider img').last() : $(this.element).find('.slider img.active-slide').prev(); 
+            var $activeImg = (($(this.element).find('.slider img').first().attr('class') !== undefined) && ($(this.element).find('.slider img').first().attr('class').split(' ')[0] === 'active-slide'))? $(this.element).find('.slider img').last() : $(this.element).find('.slider img.active-slide').prev(); 
 
-            this.animateSlide($active);
+            this.animateSlide($activeImg);
 
-            $active.addClass('active-slide').siblings().removeClass('active-slide');
+            $activeImg.addClass('active-slide').siblings().removeClass('active-slide');
 
             if (this.options.sliderNav) {
-                this.updateSliderNav($active.attr('data-slideNumber'));
+                this.updateSliderNav($activeImg.attr('data-slideNumber'));
             }     
         },
 

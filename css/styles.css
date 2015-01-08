@@ -58,10 +58,16 @@ body {
         display: block;
         height: 0;
         visibility: hidden; }
-    body .image-carousel .visible-area {
+    body .image-carousel .slider-visible-area {
       overflow: hidden;
       position: relative;
       width: auto; }
+      body .image-carousel .slider-visible-area .slider-slide {
+        left: 0;
+        position: absolute;
+        top: 0; }
+        body .image-carousel .slider-visible-area .slider-slide img {
+          float: left; }
     body .image-carousel .slider-nav .slider-left-nav {
       float: left; }
       body .image-carousel .slider-nav .slider-left-nav .slider-arrows {
@@ -80,6 +86,9 @@ body {
         zoom: 1; }
     body .image-carousel .slider-nav .slider-right-nav {
       float: right; }
+      body .image-carousel .slider-nav .slider-right-nav .slider-countdown {
+        display: inline-block;
+        zoom: 1; }
       body .image-carousel .slider-nav .slider-right-nav .slider-arrows {
         display: inline-block;
         font-size: 30px;
@@ -90,13 +99,13 @@ body {
           text-decoration: none; }
           body .image-carousel .slider-nav .slider-right-nav .slider-arrows a:hover {
             text-decoration: underline; }
-      body .image-carousel .slider-nav .slider-right-nav .control-nav {
+      body .image-carousel .slider-nav .slider-right-nav .slider-control-nav {
         display: inline-block;
         font-size: 1em;
         margin: 5px 5px 0 0;
         top: 5px;
         zoom: 1; }
-        body .image-carousel .slider-nav .slider-right-nav .control-nav .pause-nav {
+        body .image-carousel .slider-nav .slider-right-nav .slider-control-nav .slider-play-nav {
           display: none; }
     body .image-carousel .slider-nav .slider-bullets {
       display: block;
@@ -126,7 +135,7 @@ body {
       text-decoration: none; }
       body #slider1 a:hover {
         text-decoration: underline; }
-    body #slider1 .visible-area {
+    body #slider1 .slider-visible-area {
       height: 150px; }
     body #slider1 .slider-nav .slider-numbers .slider-number.slider-highlight-slide {
       background: #f00;
@@ -136,26 +145,26 @@ body {
   body #slider2 {
     margin: 20px auto;
     width: 640px; }
-    body #slider2 .visible-area {
+    body #slider2 .slider-visible-area {
       height: 150px; }
   body #slider3 {
     margin: 20px auto;
     width: 640px; }
-    body #slider3 .visible-area {
+    body #slider3 .slider-visible-area {
       height: 150px; }
     body #slider3 .slider-nav .slider-bullets .slider-bullet.slider-highlight-slide {
       color: #f00; }
   body #slider4 {
     margin: 20px auto;
     width: 640px; }
-    body #slider4 .visible-area {
+    body #slider4 .slider-visible-area {
       height: 150px;
       z-index: 0; }
-      body #slider4 .visible-area a {
+      body #slider4 .slider-visible-area a {
         color: #000; }
-      body #slider4 .visible-area .slider-left-nav {
+      body #slider4 .slider-visible-area .slider-left-nav {
         float: left; }
-      body #slider4 .visible-area .slider-right-nav {
+      body #slider4 .slider-visible-area .slider-right-nav {
         float: right; }
 
 /*# sourceMappingURL=styles.css.map */

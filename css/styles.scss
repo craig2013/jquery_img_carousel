@@ -10,10 +10,18 @@ body {
 			text-align: center;
 			@include clearfix();
 		}
-		.visible-area {
+		.slider-visible-area {
 			overflow: hidden;
 			position: relative;
-		    	width: auto;		    	
+		    	width: auto;		  
+		    	.slider-slide {
+		    		left: 0;
+		    		position: absolute;
+		    		top: 0;
+		    		img {
+		    			float: left;
+		    		}
+		    	}
 		}
 		.slider-nav {
 			//Begin default navigation with numbers, play/pause, and arrows
@@ -40,6 +48,10 @@ body {
 			}
 			.slider-right-nav {
 				float: right;
+				.slider-countdown {
+					display: inline-block;
+					zoom: 1;
+				}
 				.slider-arrows {
 					display: inline-block;
 					font-size: 30px;
@@ -53,13 +65,13 @@ body {
 						}
 					}					
 				}
-				.control-nav {
+				.slider-control-nav {
 					display: inline-block;
 					font-size: 1em;
 					margin: 5px 5px 0 0;
 					top: 5px;				
 					zoom: 1;
-					.pause-nav {
+					.slider-play-nav {
 						display: none;
 					}
 				}								
@@ -98,7 +110,7 @@ body {
 				text-decoration: underline;
 			}
 		}		
-		.visible-area {
+		.slider-visible-area {
 			height: 150px;
 		}
 		.slider-nav {
@@ -116,7 +128,7 @@ body {
 	#slider2 {
 		margin: 20px auto;
 		width: 640px;	
-		.visible-area {
+		.slider-visible-area {
 			height: 150px;
 		}	
 	}
@@ -125,7 +137,7 @@ body {
 	#slider3  {
 		margin: 20px auto;
 		width: 640px;	
-		.visible-area {
+		.slider-visible-area {
 			height: 150px;
 		}	
 		.slider-nav {
@@ -141,7 +153,7 @@ body {
 	#slider4  {
 		margin: 20px auto;
 		width: 640px;	
-		.visible-area {
+		.slider-visible-area {
 			height: 150px;
 			z-index: 0;
 			a {

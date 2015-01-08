@@ -17,8 +17,8 @@
         <!-- begin basic example with navigation included -->
         <div class="image-carousel" id="slider1">
             <div class="slider-title">Slider with navigation</div>
-            <div class="visible-area">
-                <div class="slider">
+            <div class="slider-visible-area">
+                <div class="slider-slide">
                      <img src="http://placehold.it/650x150&amp;text=Slider1:+Slide+1" data-slideNumber="1" class="active-slide"/>
                      <img src="http://placehold.it/650x150&amp;text=Slider1:+Slide+2" data-slideNumber="2"/>
                      <img src="http://placehold.it/650x150&amp;text=Slider1:+Slide+3" data-slideNumber="3"/>
@@ -26,7 +26,7 @@
             </div>
             <div class="slider-nav">
                 <div class="slider-left-nav">
-                    <div class="slider-arrows"><a href="#previous" class="btn-previous">&lt;</a></div>
+                    <div class="slider-arrows"><a href="#previous" class="slider-btn-previous">&lt;</a></div>
                     <div class="slider-numbers">
                         <a class="slider-number slider-highlight-slide" href="#"  data-slideNumber="1">1</a>
                         <a class="slider-number" href="#"  data-slideNumber="2">2</a>
@@ -34,15 +34,16 @@
                     </div>                    
                 </div>
                 <div class="slider-right-nav">
-                    <div class="control-nav">
-                        <div class="pause-nav">
-                            <a href="#pause" class="btn-pause">Pause</a>
+                    <div class="slider-countdown">10</div>
+                    <div class="slider-control-nav">
+                        <div class="slider-pause-nav">
+                            <a href="#pause" class="slider-btn-pause">Pause</a>
                         </div>
-                        <div class="play-nav">
-                            <a href="#play" class="btn-play">Play</a>
+                        <div class="slider-play-nav">
+                            <a href="#play" class="slider-btn-play">Play</a>
                         </div>
                     </div>
-                    <div class="slider-arrows"><a href="#next" class="btn-next">&gt;</a></div>
+                    <div class="slider-arrows"><a href="#next" class="slider-btn-next">&gt;</a></div>
                 </div>
             </div>            
         </div>        
@@ -51,9 +52,9 @@
         <!-- begin basic example with no navigation -->
         <div class="image-carousel" id="slider2">
             <div class="slider-title">Slider with no navigation</div>
-            <div class="visible-area">
-                <div class="slider">
-                     <img class="active-slide" src="http://placehold.it/650x150&amp;text=Slider2:+Slide+1" data-slideNumber="1"/>
+            <div class="slider-visible-area">
+                <div class="slider-slide">
+                     <img src="http://placehold.it/650x150&amp;text=Slider2:+Slide+1" data-slideNumber="1" class="active-slide"/>
                      <img src="http://placehold.it/650x150&amp;text=Slider2:+Slide+2" data-slideNumber="2"/>
                      <img src="http://placehold.it/650x150&amp;text=Slider2:+Slide+3" data-slideNumber="3"/>
                 </div>
@@ -64,9 +65,9 @@
         <!-- begin basic example with bullets as navigation -->
         <div class="image-carousel" id="slider3">
             <div class="slider-title">Slider with bullets as  navigation and longer duration used</div>
-            <div class="visible-area">
-                <div class="slider">
-                     <img class="active-slide" src="http://placehold.it/650x150&amp;text=Slider3:+Slide+1" data-slideNumber="1"/>
+            <div class="slider-visible-area">
+                <div class="slider-slide">
+                     <img src="http://placehold.it/650x150&amp;text=Slider3:+Slide+1" data-slideNumber="1" class="active-slide"/>
                      <img src="http://placehold.it/650x150&amp;text=Slider3:+Slide+2" data-slideNumber="2"/>
                      <img src="http://placehold.it/650x150&amp;text=Slider3:+Slide+3" data-slideNumber="3"/>
                 </div>
@@ -81,34 +82,36 @@
         </div>        
         <!-- end basic example with bullets as navigation -->          
 
-        
-
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
         <script>window.jQuery || document.write('<script src="js/jquery-2.1.3.js"><\/script>')</script>
         <script src="js/carousel.js"></script>
         <script>            
             $(function(){
                 $('#slider1').carousel({
-                    height: 160,
-                    siderArrows: true,
+                    imageHeight: 160,
+                    imageWidth: 650,
+                    sliderArrows: true,
+                    sliderCountDown: true,
                     sliderNav: true,
-                    width: 650
+                    sliderPauseBtn: true,
+                    totalImages: 3,
                 });
 
                 $('#slider2').carousel({
-                    height: 160,
+                    imageHeight: 160,
+                    imageWidth: 650,
                     sliderNav: false,
-                    width: 650
+                    totalImages: 3,
                 });           
 
                 $('#slider3').carousel({
                     autoScrollTime: 20000,
-                    height: 160,
+                    imageHeight: 160,
+                    imageWidth: 650,
                     sliderNav: true,
                     sliderNavType: 'bullets',
-                    width: 650
+                    totalImages: 3,
                 });        
-                                   
             });
         </script>
     </body>

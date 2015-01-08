@@ -1,5 +1,8 @@
 jQuery image carousel
 
+Version 1.03
+ - Added countdown timmer option.
+
 Version 1.02
  - Added more options.
  - Created more examples.
@@ -10,3 +13,4 @@ Version 1.01
 
 Version 1.00
  - Written using jQuery, jQuery UI and the widget factory pattern.
+ 

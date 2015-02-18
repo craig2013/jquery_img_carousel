@@ -1,0 +1,22 @@
+body {
+	#slider4 {
+		margin: 20px auto;
+		width: 640px;	
+		.slider-title {
+			font-weight: bold;
+			margin: 20px 0;
+		}
+		.slider-visible-area {
+			height: 150px;
+			.slider-slide-html {
+				height: 150px;
+				width: 640px;
+				.slider-slide {
+					border: 1px solid #000;
+					height: 98%;
+					width: 98%;					
+				}				
+			}
+		}		
+	}
+}

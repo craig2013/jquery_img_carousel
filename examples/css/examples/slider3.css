@@ -1,0 +1,9 @@
+body #slider3 {
+  margin: 20px auto;
+  width: 640px; }
+  body #slider3 .slider-visible-area {
+    height: 150px; }
+  body #slider3 .slider-nav .slider-bullets .slider-bullet.slider-highlight-slide {
+    color: #f00; }
+
+/*# sourceMappingURL=slider3.css.map */

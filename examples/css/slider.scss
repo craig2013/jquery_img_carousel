@@ -1,10 +1,7 @@
-@import "reset";
 @import "mixins";
-body {
-	font-family: arial,  helvetica, sans-serif;
-	font-size: 1em;
+body{
 	//Begin slider genral styles
-	.image-carousel {
+	.slider {
 		position: relative;
 		.slider-title {
 			text-align: center;
@@ -14,13 +11,18 @@ body {
 			overflow: hidden;
 			position: relative;
 		    	width: auto;		  
-		    	.slider-slide {
+		    	.slider-slides {
 		    		left: 0;
 		    		position: absolute;
 		    		top: 0;
+		    		div {
+		    			//float: left;
+		    			display: inline-block;
+		    		}
 		    		img {
 		    			float: left;
 		    		}
+		    		@include clearfix();
 		    	}
 		}
 		.slider-nav {
@@ -97,74 +99,5 @@ body {
 			}			
 			@include clearfix();
 		}
-	}
-
-	//Begin  slider1 CSS
-	#slider1 {
-		margin: 20px auto;
-		width: 640px;	
-		a {
-			color: #000;
-			text-decoration: none;
-			&:hover {
-				text-decoration: underline;
-			}
-		}		
-		.slider-visible-area {
-			height: 150px;
-		}
-		.slider-nav {
-			.slider-numbers {
-				.slider-number.slider-highlight-slide {
-					background: #f00;
-					border-radius: 3px;
-					color: #fff;  	
-					padding: 3px;				
-				}
-			}
-		}
-	}
-	//Begin  slider2 CSS
-	#slider2 {
-		margin: 20px auto;
-		width: 640px;	
-		.slider-visible-area {
-			height: 150px;
-		}	
-	}
-
-	//Begin  slider3 CSS
-	#slider3  {
-		margin: 20px auto;
-		width: 640px;	
-		.slider-visible-area {
-			height: 150px;
-		}	
-		.slider-nav {
-			.slider-bullets {
-				.slider-bullet.slider-highlight-slide {
-					color: #f00;
-				}
-			}
-		}
-	}
-
-	//Begin  slider3 CSS
-	#slider4  {
-		margin: 20px auto;
-		width: 640px;	
-		.slider-visible-area {
-			height: 150px;
-			z-index: 0;
-			a {
-				color: #000;
-			}
-			.slider-left-nav {
-				float: left;
-			}
-			.slider-right-nav {
-				float: right;
-			}
-		}	
 	}	
 }

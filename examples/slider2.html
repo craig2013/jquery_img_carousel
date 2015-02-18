@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <title>Slider - Example 2</title>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <script src="js/modernizr-2.8.3.js"></script>
+        <link rel="stylesheet" href="css/main.css"/>
+        <link rel="stylesheet" href="css/slider.css"/>
+        <link rel="stylesheet" href="css/examples/slider2.css"/>
+    </head>
+    <body>
+
+        <!-- begin basic example with no navigation -->
+        <div class="slider" id="slider2">
+            <div class="slider-title">Slider with no navigation</div>
+            <div class="slider-visible-area">
+                <div class="slider-slide">
+                     <img src="http://placehold.it/650x150&amp;text=Slider2:+Slide+1" data-slideNumber="1" class="active-slide"/>
+                     <img src="http://placehold.it/650x150&amp;text=Slider2:+Slide+2" data-slideNumber="2"/>
+                     <img src="http://placehold.it/650x150&amp;text=Slider2:+Slide+3" data-slideNumber="3"/>
+                </div>
+            </div>     
+        </div>        
+        <!-- end basic example with no navigation -->   
+
+        <div class="content">
+        	<p>This is a basic slider with no navigation included.</p>
+        </div>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
+        <script>window.jQuery || document.write('<script src="../js/jquery-2.1.3.js"><\/script>')</script>
+        <script src="js/slider.js"></script>
+        <script>
+            $(function(){
+                $('#slider2').slider({
+                    imageHeight: 160,
+                    imageWidth: 650,
+                    sliderNav: false,
+                    totalImages: 3,
+                });        
+            });
+        </script>
+    </body>
+</html>

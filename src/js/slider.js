@@ -1,6 +1,6 @@
 ;(function ( $, window, document, undefined ) {
 
-    var pluginName = "slider",
+    var pluginName = 'slider',
           defaults = {//Plugin options with default values
                 autoScroll: true,
                 autoScrollTime: 10000,
@@ -9,9 +9,10 @@
                 sliderArrows: false,
                 sliderCountDown: false,
                 sliderNav: true,
-                sliderNavType: "default",
+                sliderNavType: 'default',
                 sliderPauseBtn: false,
                 slideDuration: 300,
+                slideDirection: 'right',
                 totalSlides: null,            
           };
 
@@ -29,69 +30,51 @@
     Plugin.prototype = {
 
         init: function() {
-            var self = this;
-
-            this.sliderWidth = this.options.slideWidth * this.options.totalSlides;  
-
-            $(this.element).find('.slider-visible-area .slider-slides').css('width',this.sliderWidth);
 
             this.setBindings();
 
             if (this.options.autoScroll) {
                 this.autoScroll();
             }
+
+            if (this.options.sliderCountDown) {
+                var countDownTime = parseInt(this.options.autoScrollTime, 10) / 1000;
+                this.updateCounter(countDownTime);
+            }            
         },
 
-        setBindings: function() {//Set click events
+        setBindings: function() {
             var self = this;
-            $(this.element).on('click', function(e) {
-                e.preventDefault();
-                var $target = $(e.target)[0];
-                var btnClicked = $($target).attr('class').split(' ')[0];
 
-                if ((self.options.sliderArrows) && (btnClicked === 'slider-btn-next')) {
-                    self.arrowClicked(btnClicked);
-                } else if ((self.options.sliderArrows) && (btnClicked === 'slider-btn-previous')) {
-                    self.arrowClicked(btnClicked);
-                } else if ((self.options.sliderPauseBtn) && (btnClicked === 'slider-btn-pause')) {
-                    self.pauseAutoScroll();
-                } else if ((self.options.sliderPauseBtn) && (btnClicked === 'slider-btn-play')) {
-                    self.resumeAutoScroll();
-                } else if ((self.options.sliderNav) && (btnClicked === 'slider-number' || btnClicked === 'slider-bullet')) {
-                    self.slideSelected($target);
-                } 
+            $('body').on('click', function(e) {
+                e.preventDefault();
+                var $targetClicked = $(e.target);
+
+                //If slider has a pause button
+                if (self.options.sliderPauseBtn) {
+                    if ($targetClicked.hasClass('slider-btn-pause')) {
+                        self.pauseAutoScroll();
+                    } else if ($targetClicked.hasClass('slider-btn-play')) {
+                        self.resumeAutoScroll();
+                    }
+                }
+
             });
         },
 
-        animateSlide: function($activeImg) {//Animate the slide
-            var sliderNumber = $activeImg.attr('data-slideNumber') - 1;
-            var sliderPosition = sliderNumber * this.options.slideWidth;
-            var animateSlider = {};
-
-            animateSlider[this.options.direction] = -sliderPosition;
-
-            $(this.element).find('.slider-slides').animate(animateSlider, this.options.slideDuration); 
+        autoScroll: function() {
+            this.setTimer();
         },
 
-        updateSliderNav: function(currentSlide) {//Update the slider navigation
-            var $navObject = '';
-
-            if (this.options.sliderNavType === 'default') { //Default number navigation
-                $navObject = $(this.element).find('.slider-nav .slider-numbers .slider-number');
-            } else if (this.options.sliderNavType === 'bullets') { //Bullets navigation
-                $navObject = $(this.element).find('.slider-nav .slider-bullets .slider-bullet');
-            }       
-
-            $navObject.removeClass('slider-highlight-slide');
-
-            $.each($navObject, function(i, obj) {
-                if ($(obj).attr('data-slideNumber') === currentSlide) {
-                    $(obj).addClass('slider-highlight-slide');
-                } 
-            });          
+        setTimer: function() {
+            var self = this;
+            clearInterval(this.intervalId);
+            this.intervalId = setInterval(function() { 
+                self.nextSlide();
+            }, this.options.autoScrollTime);                         
         },
 
-        updateCounter: function(seconds) {//Update the slider counter if there is one 
+        updateCounter: function(seconds) {
             var self = this;
             var countDownTime = parseInt(this.options.autoScrollTime, 10) / 1000;
 
@@ -107,28 +90,7 @@
             $(this.element).find('.slider-nav .slider-right-nav .slider-countdown').empty().text(seconds);
         },
 
-        autoScroll: function(resumeAutoScrollTime) {//Auto scroll slider
-            var self = this;
-            resumeAutoScrollTime = (resumeAutoScrollTime===undefined)? ' ' : resumeAutoScrollTime;
-
-            if ((typeof resumeAutoScrollTime === 'number') && (resumeAutoScrollTime >= 1)) {
-                this.intervalId = setInterval(function() { 
-                    self.nextSlide(resumeAutoScrollTime);
-                }, resumeAutoScrollTime);
-            } else {
-                this.intervalId = setInterval(function() { 
-                    self.nextSlide();
-                }, this.options.autoScrollTime);                
-            }
-
-            if (this.options.sliderCountDown && !this.counterId) {
-                var countDownTime = parseInt(this.options.autoScrollTime, 10) / 1000;
-
-                this.updateCounter(countDownTime);
-            }
-        },
-
-        pauseAutoScroll: function() {//Pause auto scroll 
+        pauseAutoScroll: function() {
             clearInterval(this.intervalId);
 
             if (this.options.sliderCountDown) {
@@ -138,10 +100,10 @@
             if (this.options.sliderNav) {
                 $(this.element).find('.slider-nav .slider-control-nav .slider-play-nav').show();
                 $(this.element).find('.slider-nav .slider-control-nav .slider-pause-nav').hide();
-            }                
+            }              
         },
 
-        resumeAutoScroll: function() {//Resume auto scroll
+        resumeAutoScroll: function() {
             if (this.options.sliderCountDown) {
                 var countDownTime = $(this.element).find('.slider-nav .slider-right-nav .slider-countdown').text();
                 var interValTime = parseInt(countDownTime) * 1000;
@@ -156,94 +118,123 @@
             if (this.options.sliderNav) {
                 $(this.element).find('.slider-nav .slider-control-nav .slider-play-nav').hide();
                 $(this.element).find('.slider-nav .slider-control-nav .slider-pause-nav').show();
-            }             
+            }    
         },
 
-        nextSlide: function(resumeAutoScrollTime) {//Show the next image
-            var $activeSlide = (($(this.element).find('.slider-slides .slider-slide').last().attr('class') !== undefined) && ($(this.element).find('.slider-slides .slider-slide').last().attr('class').split(' ')[1] === 'active-slide'))? $(this.element).find('.slider-slides .slider-slide').first() : $(this.element).find('.slider-slides .slider-slide.active-slide').next();            
-            resumeAutoScrollTime = (resumeAutoScrollTime===undefined)? ' ' : resumeAutoScrollTime;
+        nextSlide: function() {
+            var $activeSlide = $(this.element).find('.slider-slides .slider-slide.active-slide');        
+            var $nextSlide = ($(this.element).find('.slider-slides .slider-slide').last().hasClass('active-slide')) ? $(this.element).find('.slider-slides .slider-slide').first() : $(this.element).find('.slider-slides .slider-slide.active-slide').next();
 
-            this.animateSlide($activeSlide);
+            this.animateSlide($activeSlide, $nextSlide); 
+                        
+        },
 
-            $activeSlide.addClass('active-slide').siblings().removeClass('active-slide');
+        previousSlide: function() {
+            //placeholder function 
+        },
 
-            if (this.options.sliderNav) {
-                this.updateSliderNav($activeSlide.attr('data-slideNumber'));
+        animateSlide: function($activeSlide, $nextSlide) {
+            if (!Modernizr.csstransitions) {//Use jQuery .animate as fallback
+                this.jsAnimation($activeSlide, $nextSlide);
+            } else {//Use CSS3 transition
+                this.cssAnimation($activeSlide, $nextSlide);
+            }  
+
+            if (this.options.sliderNav) {//Update slider nav if it exists
+                this.updateSliderNav($activeSlide, $nextSlide);
+            }                                             
+        },
+
+        updateSliderNav: function($activeSlide, $nextSlide) {
+            var $navObject = '';
+            var sliderNavType = this.options.sliderNavType;
+            var activeSlideNumber = $activeSlide.attr('data-slideNumber');
+            var nextSlideNumber = $nextSlide.attr('data-slideNumber');
+
+            if (sliderNavType === 'default') {
+                $navObject = $(this.element).find('.slider-nav .slider-numbers');
+
+                $navObject.find('.slider-number[data-slideNumber="'+activeSlideNumber+'"]').removeClass('slider-highlight-slide');
+                $navObject.find('.slider-number[data-slideNumber="'+nextSlideNumber+'"]').addClass('slider-highlight-slide');  
+                              
+            } else if (sliderNavType === 'bullets') {
+                $navObject = $(this.element).find('.slider-nav .slider-bullets');
+
+                $navObject.find('.slider-bullet[data-slideNumber="'+activeSlideNumber+'"]').removeClass('slider-highlight-slide');
+                $navObject.find('.slider-bullet[data-slideNumber="'+nextSlideNumber+'"]').addClass('slider-highlight-slide');                 
             }
 
-            if (this.options.sliderCountDown) {
-                var countDownTime = parseInt(this.options.autoScrollTime, 10) / 1000;
-                this.updateCounter(countDownTime);
-
-                if (typeof  resumeAutoScrollTime === 'number') {
-                    clearInterval(this.intervalId);
-                    resumeAutoScrollTime = undefined;
-                    this.autoScroll();
-                }                
-            }
 
         },
 
-        previousSlide: function() {//Show the previous image
-            var $activeSlide = (($(this.element).find('.slider-slides .slider-slide').first().attr('class') !== undefined) && ($(this.element).find('.slider-slides .slider-slide').first().attr('class').split(' ')[13] === 'active-slide'))? $(this.element).find('.slider-slides .slider-slide').last() : $(this.element).find('.slider-slides .slider-slide.active-slide').prev(); 
+        cssAnimation: function($activeSlide, $nextSlide) {
+            var self = this;
+            var slideDirection = this.options.slideDirection;
 
-            this.animateSlide($activeSlide);
+            $nextSlide.addClass('slider-slide-right  active-slide');
+            //Animate next slide to the right so it will slide in to the left
+            setTimeout(function() {       
+                $(self.element).addClass('slider-transition');
+                $(self.element).find('.slider-slides .slider-slide').css({
+                    'transition-duration': '900ms',
+                    '-webkit-transition-duration': '900ms',
+                    '-moz-transition-duration': '900ms',
+                    '-o-transition-duration': '900ms'
+                });   
+                $activeSlide.addClass('slider-shift-'+slideDirection);         
+            }.bind(this), 500);        
 
-            $activeSlide.addClass('active-slide').siblings().removeClass('active-slide');
-
-            if (this.options.sliderNav) {
-                this.updateSliderNav($activeImg.attr('data-slideNumber'));
-            }     
-
-            if (this.options.sliderCountDown) {
-                var countDownTime = parseInt(this.options.autoScrollTime, 10) / 1000;
-                this.updateCounter(countDownTime);
-            }            
-        },
-
-        arrowClicked: function(btnClicked) {//Determine which slider arrow clicked if an arrow exists
-            if (this.options.sliderCountDown) {
-                var countDownTime = parseInt(this.options.autoScrollTime, 10) / 1000;
-                $(this.element).find('.slider-nav .slider-right-nav .slider-countdown').empty().text(countDownTime);
-                clearTimeout(this.counterId);
-            }
-
-            if (btnClicked === 'slider-btn-next') {
-                clearInterval(this.intervalId);
-                this.nextImg();
-                this.autoScroll();
-            } else if (btnClicked === 'slider-btn-previous') {
-                clearInterval(this.intervalId);
-                this.previousImg();
-                this.autoScroll();
-            }
-        },
-
-        slideSelected: function($target) {//Change slider based on what slide was selected in the navigation
-            var $target =  $($target);
-            var slideSelected = $target.attr('data-slideNumber');
-
-            this.animateSlide($target);    
-
-            $(this.element).find('.visible-area .slider-slides img[data-slideNumber="'+imgSelected+'"]').addClass('active-slide').siblings().removeClass('active-slide');
-
-            if (this.options.sliderNav) {
-                this.updateSliderNav(slideSelected);
-            }                 
-
-            if (this.options.autoScroll) {
-                 if (this.options.sliderCountDown) {
+            //Remove styles and classes that had been added
+            setTimeout(function() {   
+                $(self.element).removeClass('slider-transition');
+                $(self.element).find('.slider-slides .slider-slide').attr('style','');  
+                $activeSlide.removeClass('slider-shift-'+slideDirection);
+                $activeSlide.removeClass('active-slide');
+                $nextSlide.removeClass('slider-slide-'+slideDirection);       
+                self.setTimer();              
+                if (self.options.sliderNav) {
+                    self.updateSliderNav($activeSlide, $nextSlide);
+                }                                          
+                if (self.options.sliderCountDown) {
                     var countDownTime = parseInt(this.options.autoScrollTime, 10) / 1000;
+                    self.updateCounter(countDownTime);
+                }
+            }.bind(this), 1600);
+        },
 
-                    $(this.element).find('.slider-nav .slider-right-nav .slider-countdown').empty().text(countDownTime);
-                    clearTimeout(this.counterId);
-                    this.updateCounter(countDownTime);
-                    this.nextImg();
-                }                 
-                clearInterval(this.intervalId);
-                this.autoScroll();
+        jsAnimation: function($activeSlide, $nextSlide) {
+            var self = this;
+            var animation = {};
+            var animationPrev = {};
+            var slideDirection = this.options.slideDirection;
+            var slideDuration = this.options.slideDuration;
+            var autoScrollTime = this.options.autoScrollTime;
+            var $sliderSlide = $(this.element).find('.slider-slides .slider-slide');
+
+            if (slideDirection === 'right') {
+                $activeSlide.addClass('slider-js-reset-left');
             }
-        },        
+
+            animation[slideDirection] = '0%';
+
+            animationPrev[slideDirection] = '100%';
+
+            $activeSlide.animate(animationPrev, slideDuration);
+
+            $nextSlide.addClass('slider-slide-right  active-slide');
+
+            $nextSlide.animate(animation, slideDuration, 'swing', function() {
+                $activeSlide.removeClass('slider-js-reset-left');
+                $activeSlide.removeClass('active-slide');
+                $nextSlide.removeClass('slider-slide-'+slideDirection);   
+                $sliderSlide.attr('style', '');                    
+                self.setTimer();  
+                if (self.options.sliderCountDown) {
+                    var countDownTime = parseInt(self.options.autoScrollTime, 10) / 1000;
+                    self.updateCounter(countDownTime);
+                }                    
+            });          
+        }
     };
 
     $.fn[pluginName] = function ( options ) {

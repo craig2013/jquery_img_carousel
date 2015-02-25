@@ -5,40 +5,43 @@
 body {
 	font-family: arial,  helvetica, sans-serif;
 	font-size: 1em;
-	.content {
+	.wrapper {
 		margin: 0 auto;
-		text-align: center;
+		position: relative;
 		width: 100%;
-		#main-header {
-			margin: 0 0 30px 0;
-			h1 {
-				font-size: 2em;
-			}
-			hr {
-				width: 70%;
-			}
-		}
-		p {
-			margin: 10px 0;
-			a {
-				text-decoration: underline;
-				&:hover {
-					text-decoration: none;
+		.content {
+			margin: 0 auto;
+			text-align: center;
+			header {
+				margin: 0 0 30px 0;
+				h1 {
+					font-size: 2em;
 				}
-			}
-
-		}
-		.options-text {
-			.options-list {
-				list-style-type: disc;
-				margin: 10px auto 0 auto;
-				width: 560px;
-				li {
-					display: list-item;
-					text-align: left;
+				hr {
+					width: 70%;
 				}
-			}
+				@include clearfix();
+			}//end #main-header			
+			p {
+				margin: 10px 0;
+				a {
+					text-decoration: underline;
+					&:hover {
+						text-decoration: none;
+					}
+				}				
+			}//end p
+			.options-text {
+				.options-list {
+					list-style-type: disc;
+					margin: 10px auto 0 auto;
+					width: 560px;
+					li {
+						display: list-item;
+						text-align: left;
+					}
+				}
+			}//end .options-text			
 		}
-
-	}
+	}//end .wrapper
 }

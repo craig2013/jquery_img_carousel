@@ -23,7 +23,7 @@ You can override the styles with your own and/or combine the CSS files into your
  - Created more examples.
  - Improved the CSS and started using SASS.
 
-#######Version 1.01
+######Version 1.01
   - Written using the basic jQuery plugin boilerplate.
 
 ######Version 1.00

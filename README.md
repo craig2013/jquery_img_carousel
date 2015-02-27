@@ -1,6 +1,12 @@
-jQuery slider
+#jQuery slider
 
-Version 1.04
+Examples located in examples directory.  Slider JS and CSS files in dist folder.  SASS CSS versions in the src/css folder.  
+
+You can override the styles with your own and/or combine the CSS files into your existing project.
+
+##Version History
+
+######Version 1.04
 - Changed folder structure 
    - Placed source files in src folder.
    - Moved examples to examples folder.
@@ -9,17 +15,17 @@ Version 1.04
 - Now using CSS3 transitions for browsers that support it and using jQuery .animate as the JavaScript fallback for browsers that don't.
 - This slider now requires modernizr and jQuery. 
 
-Version 1.03
+######Version 1.03
  - Added countdown timmer option.
 
-Version 1.02
+######Version 1.02
  - Added more options.
  - Created more examples.
  - Improved the CSS and started using SASS.
 
-Version 1.01
+#######Version 1.01
   - Written using the basic jQuery plugin boilerplate.
 
-Version 1.00
+######Version 1.00
  - Written using jQuery, jQuery UI and the widget factory pattern.
  

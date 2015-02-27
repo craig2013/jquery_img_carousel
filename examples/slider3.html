@@ -7,11 +7,11 @@
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
         <title>Slider - Example 3</title>
-        <meta name="description" content=""/>
+        <meta name="description" content="jQuery slider using bullets for navigation instead of numbers and also a longer auto scroll time."/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <script src="js/modernizr-2.8.3.js"></script>
         <link rel="stylesheet" href="css/main.css"/>
-        <link rel="stylesheet" href="css/slider.css"/>
+        <link rel="stylesheet" href="../src/css/slider.css"/>
         <style>
             #slider3 {
                 height: 150px;
@@ -28,7 +28,7 @@
 
             <!-- begin basic example with bullets as navigation -->
             <div class="slider" id="slider3">
-                <div class="slider-title">Slider with bullets as  navigation and longer duration used</div>
+                <div class="slider-title">Slider with bullets as  navigation and longer auto scroll time used</div>
                 <div class="slider-slides">
                     <div class="slider-slide active-slide" data-slideNumber="1">
                          <img src="http://placehold.it/650x150&amp;text=Slider3:+Slide+1"/>
@@ -57,8 +57,8 @@
         </div>            
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
-        <script>window.jQuery || document.write('<script src="../js/jquery-2.1.3.js"><\/script>')</script>
-        <script src="js/slider.js"></script>
+        <script>window.jQuery || document.write('<script src="../src/lib/jquery-2.1.3.js"><\/script>')</script>
+        <script src="../src/js/slider.js"></script>
         <script>
             $(function(){
                 $('#slider3').slider({

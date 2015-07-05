@@ -1,0 +1,12 @@
+{
+	"name": "simple-jquery-slider-plugin",
+	"version": "1.0.4",
+	"main":  "jquery_slider",
+	"ignore": [
+		"node_modules",
+		".git*",
+		"Gruntfile.js",
+		"package.json"
+	],
+	"dependencies": { "jquery": "latest" }
+}

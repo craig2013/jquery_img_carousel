@@ -14,32 +14,56 @@
     </head>
     <body>
         <div class="wrapper">
-           <div class="content">
-                <header>
-                    <h1>jQuery Slider Plugin</h1>
+            <header>
+                <h1>jQuery Slider Plugin</h1>
+                <hr/>
+            </header>
+            <main>
+               <div class="content">
+                    <p>The following are examples of how to use the jQuery plugin.</p>
+                    <ol class="example-list">
+                        <li><a href="slider1.html">Slider with all options enabled.</a></li>
+                        <li><a href="slider2.html">Slider with navigation arrows only.</a></li>
+                        <li><a href="slider3.html">Slider with navigation indicators only.</a></li>
+                    </ol>
                     <hr/>
-                </header>
-                <p><a href="slider1.html">Example 1:  Slider with navigation.</a></p>
-                <p><a href="slider2.html">Example 2:  Slider with no navigation.</a></p>
-                <p><a href="slider3.html">Example 3:  Slider with bullets as navigation.</a></p>
-                <p><a href="slider4.html">Example 4:  Slider using divs instead of images.</a></p>
-                <div class="options-text">
-                    Default Options: <br/>
-                    <ul class="options-list">
-                        <li>autoScroll: True or false.  Default is set to true.</li>
-                        <li>autoScrollTime: Time in mili-seconds.  Default is 10 seconds.</li>
-                        <li>direction: Left or right.  Default is left.</li>
-                        <li>slideHeight: The image height in pixles.</li>
-                        <li>slideWidth: The image width in pixles.</li>
-                        <li>sliderArrows: Optional property, either true or false.  Default is set to false.</li>
-                        <li>sliderCountDown: Optional property, either true or false.  Default is set to false.</li>
-                        <li>sliderNav: Optional property, either true or false.  Default is set to false.</li>
-                        <li>sliderNavType: Optional property if sliderNav is set to true.</li>
-                        <li>sliderPauseBtn: Optional property, either true or false.  Default is set to true.</li>
-                        <li>slideDuration: The speed of the animation.</li>
-                        <li>totalSlides: The total number of slides.</li> 
-                    </ul>
-                </div>
+                    <div>
+                        <p>To eneable this add slider.css to the head of your page and/or add the SASS file slider.scss to your main SASS file.</p>
+                        <p>Then add the slider.js file to where your JavaScript is loaded.  This plugin requires that jQuery already be loaded for fallback.</p>
+                        <p>To initialize the plugin add the following to your page below jQuery and the slider.js file.</p>
+                        <div class="example-code">
+                            <pre>
+                                <code>
+                                    &nbsp;&nbsp;$('#replace-with-slider-id').slider({
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ssliderArrows: true,
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sliderNav: true,
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sliderCountDown: true,
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sliderPauseBtn: true
+                                    &nbsp;&nbsp;});       
+                                </code>
+                            </pre>
+                        </div>
+                        <p>You can change the options within the options object based on the options you want.</p>
+                        <p>To see the options available look at the demo pages above.</p>
+                        <p>The CSS can be overided to fit your needs. Just place it in a seperate CSS or SASS file so updates don't override your changes.</p>
+                    </div>
+                    <hr/>
+                    <div class="options-text">
+                        <p><b>Default Options:</b></p>
+                        <p>These are the default options that can be used for the plugin passed in to the options object.</p>
+                        <ul class="options-list">
+                            <li>autoScroll: True or false.  Default is set to true.</li>
+                            <li>autoScrollTime: Time in mili-seconds.  Default is 10 seconds.</li>
+                            <li>direction: Left or right.  Default is left.</li>
+                            <li>sliderArrows: Optional property, either true or false.  Default is set to false.</li>
+                            <li>sliderCountDown: Optional property, either true or false.  Default is set to false.</li>
+                            <li>sliderNav: Optional property, either true or false.  Default is set to false.</li>
+                            <li>sliderNavType: Optional property if sliderNav is set to true.</li>
+                            <li>sliderPauseBtn: Optional property, either true or false.  Default is set to true.</li>
+                            <li>slideDuration: The speed of the animation.</li>
+                        </ul>
+                    </div>
+            </main>        
             </div>
     </body>
 </html>

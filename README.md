@@ -6,26 +6,32 @@ You can override the styles with your own and/or combine the CSS files into your
 
 ##Version History
 
-######Version 1.04
+######Version 1.5.0
+- Added more documentation
+- Removed requirement for Modernizr and now using a function to test for CSS transition support.
+- Improved various functions.
+- Improved slider indicators.
+
+######Version 1.4.0
 - Changed folder structure 
    - Placed source files in src folder.
    - Moved examples to examples folder.
 - Made slider responsive.
 - Added the ability to have either HTML slides or slides with just an image.
 - Now using CSS3 transitions for browsers that support it and using jQuery .animate as the JavaScript fallback for browsers that don't.
-- This slider now requires modernizr and jQuery. 
+- This slider now requires Modernizr and jQuery. 
 
-######Version 1.03
+######Version 1.3.0
  - Added countdown timmer option.
 
-######Version 1.02
+######Version 1.2.0
  - Added more options.
  - Created more examples.
  - Improved the CSS and started using SASS.
 
-######Version 1.01
+######Version 1.1.0
   - Written using the basic jQuery plugin boilerplate.
 
-######Version 1.00
+######Version 1.0.0
  - Written using jQuery, jQuery UI and the widget factory pattern.
  

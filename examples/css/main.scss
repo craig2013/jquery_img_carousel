@@ -1,47 +1,78 @@
-@import "bourbon/bourbon";
-@import "config";
-@import "foundation";
-@import "mixins";
+@import "../../src/css/sass/includes/bourbon/bourbon";
+@import "../../src/css/sass/includes/config";
+@import "../../src/css/sass/includes/foundation";
+@import "../../src/css/sass/includes/mixins";
+
 body {
 	font-family: arial,  helvetica, sans-serif;
 	font-size: 1em;
+	a {
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
 	.wrapper {
 		margin: 0 auto;
 		position: relative;
 		width: 100%;
-		.content {
-			margin: 0 auto;
+		header {
+			margin: 0 0 30px 0;
 			text-align: center;
-			header {
-				margin: 0 0 30px 0;
-				h1 {
-					font-size: 2em;
-				}
-				hr {
+			h1 {
+				font-size: 2em;
+			}
+			hr {
+				width: 70%;
+			}
+			@include clearfix();
+		}//end #main-header	
+		main {
+			.content {
+				margin: 0 auto;
+				text-align: center;		
+				p {
+					margin: 10px 0;
+					text-align: center;				
+				}//end p
+
+
+
+				.example-code {
+					margin: 0 auto;
+					text-align: left;
 					width: 70%;
-				}
-				@include clearfix();
-			}//end #main-header			
-			p {
-				margin: 10px 0;
-				a {
-					text-decoration: underline;
-					&:hover {
-						text-decoration: none;
+					pre {
+						background-color: #f5f5f5;
+						border: 1px solid #ccc;
+						border-radius: 4px;
+						font-size: 13px;
+						padding: 9.5px;
+						white-space: pre-wrap;
 					}
-				}				
-			}//end p
-			.options-text {
-				.options-list {
-					list-style-type: disc;
-					margin: 10px auto 0 auto;
-					width: 560px;
+				}
+
+				.example-list {
+					list-style-type: decimal;
+					margin: 0 auto 15px auto;
+					width: 275px;
 					li {
-						display: list-item;
 						text-align: left;
 					}
 				}
-			}//end .options-text			
-		}
+
+				.options-text {
+					.options-list {
+						list-style-type: disc;
+						margin: 10px auto 0 auto;
+						width: 560px;
+						li {
+							display: list-item;
+							text-align: left;
+						}
+					}
+				}//end .options-text			
+			} //end .content
+		}//end main	
 	}//end .wrapper
 }

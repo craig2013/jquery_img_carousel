@@ -1,4 +1,8 @@
+.sass-cache/
 css/.sass-cache/
 examples/css/.sass-cache/
 src/css/.sass-cache/
 node_modules/
+Gruntfile.js
+package.json
+slider-image.psd

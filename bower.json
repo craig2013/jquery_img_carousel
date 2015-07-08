@@ -1,7 +1,13 @@
 {
-	"name": "simple-jquery-slider-plugin",
-	"version": "1.0.4",
-	"main":  "jquery_slider",
+	"name": "jquery-slider-plugin-cs",
+	"authors": [
+		"Craig Stroman (http://www.stromannet.com)"
+	],
+	"version": "1.5.0",
+	"main":  [
+		"dist/js/slider.js",
+		"dist/css/slider.css"
+	],
 	"ignore": [
 		"node_modules",
 		".git*",

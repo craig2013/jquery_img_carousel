@@ -118,7 +118,7 @@ img {
   font-weight: normal;
   font-style: normal;
 }
-.fa, body .wrapper .slider .slider-slides .slider-arrow-left .slider-btn-previous, body .wrapper .slider .slider-slides .slider-arrow-right .slider-btn-next {
+.fa, body .wrapper .slider .slider-arrow-left .slider-btn-previous, body .wrapper .slider .slider-arrow-right .slider-btn-next {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
@@ -190,10 +190,10 @@ img {
   float: left;
 }
 
-.fa.pull-left, body .wrapper .slider .slider-slides .slider-arrow-left .pull-left.slider-btn-previous, body .wrapper .slider .slider-slides .slider-arrow-right .pull-left.slider-btn-next {
+.fa.pull-left, body .wrapper .slider .slider-arrow-left .pull-left.slider-btn-previous, body .wrapper .slider .slider-arrow-right .pull-left.slider-btn-next {
   margin-right: .3em;
 }
-.fa.pull-right, body .wrapper .slider .slider-slides .slider-arrow-left .pull-right.slider-btn-previous, body .wrapper .slider .slider-slides .slider-arrow-right .pull-right.slider-btn-next {
+.fa.pull-right, body .wrapper .slider .slider-arrow-left .pull-right.slider-btn-previous, body .wrapper .slider .slider-arrow-right .pull-right.slider-btn-next {
   margin-left: .3em;
 }
 
@@ -620,11 +620,11 @@ img {
   content: "";
 }
 
-.fa-chevron-left:before, body .wrapper .slider .slider-slides .slider-arrow-left .slider-btn-previous:before {
+.fa-chevron-left:before, body .wrapper .slider .slider-arrow-left .slider-btn-previous:before {
   content: "";
 }
 
-.fa-chevron-right:before, body .wrapper .slider .slider-slides .slider-arrow-right .slider-btn-next:before {
+.fa-chevron-right:before, body .wrapper .slider .slider-arrow-right .slider-btn-next:before {
   content: "";
 }
 
@@ -2450,12 +2450,21 @@ img {
   content: "";
 }
 
+body {
+  overflow-x: hidden;
+}
 body .wrapper .slider {
   height: 100%;
   margin: 0 auto 30px auto;
   position: relative;
   text-align: center;
   width: 100%;
+  /** Slider navigation arrows 
+  *
+  * Feel free to replace these with images.
+  * Or you can leave it as is.  I'm using font-awesome for the icons.
+  *
+  **/
 }
 body .wrapper .slider .slider-slides {
   height: 100%;
@@ -2468,12 +2477,6 @@ body .wrapper .slider .slider-slides {
   * Sets up slide to be animated into view.
   * For example a slide that is going to slide in from the right of the view will be positioned at right: -100%.
   * It will slide in when right is set to 0.
-  *
-  **/
-  /** Slider navigation arrows 
-  *
-  * Feel free to replace these with images.
-  * Or you can leave it as is.  I'm using font-awesome for the icons.
   *
   **/
 }
@@ -2509,32 +2512,35 @@ body .wrapper .slider .slider-slides .slider-slide.slider-slide-right {
   left: auto;
   right: -100%;
 }
-body .wrapper .slider .slider-slides .slider-arrow-left {
-  float: left;
-  font-size: 2em;
-  margin: 0 0 0 10px;
-  position: relative;
-  top: 50%;
-  z-index: 3;
-}
-body .wrapper .slider .slider-slides .slider-arrow-left .slider-btn-previous:hover {
-  text-decoration: none !important;
-}
-body .wrapper .slider .slider-slides .slider-arrow-right {
-  float: right;
-  font-size: 2em;
-  margin: 0 10px 0 0;
-  position: relative;
-  top: 50%;
-  z-index: 3;
-}
-body .wrapper .slider .slider-slides .slider-arrow-right .slider-btn-next:hover {
-  text-decoration: none !important;
-}
 body .wrapper .slider .slider-slides::after {
   clear: both;
   content: "";
   display: table;
+}
+body .wrapper .slider .slider-arrow-left {
+  bottom: 0;
+  left: 0;
+  font-size: 2em;
+  position: absolute;
+  top: 45%;
+  width: 25px;
+  z-index: 3;
+}
+body .wrapper .slider .slider-arrow-left .slider-btn-previous:hover {
+  text-decoration: none !important;
+}
+body .wrapper .slider .slider-arrow-right {
+  bottom: 0;
+  left: auto;
+  font-size: 2em;
+  position: absolute;
+  right: 0;
+  top: 45%;
+  width: 25px;
+  z-index: 3;
+}
+body .wrapper .slider .slider-arrow-right .slider-btn-next:hover {
+  text-decoration: none !important;
 }
 body .wrapper .slider .slider-nav {
   display: block;

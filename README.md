@@ -4,7 +4,21 @@ Examples located in examples directory.  Slider JS and CSS files in dist folder.
 
 You can override the styles with your own and/or combine the CSS files into your existing project.
 
+You can now install this with Bower using 'jquery-slider-plugin-cs'.
+
+For more documentation go to http://jquery-slider.stromannet.com/
+
+Have you found a bug?  Please open an issue.
+
 ##Version History
+
+######Version 1.6.1
+- Added pause on hover.
+- Changed how some of the options are defined.
+- Added some more documentation.
+- Bugs Fixed:
+   - Fixed an issue with the arrows.
+
 
 ######Version 1.5.0
 - Added more documentation

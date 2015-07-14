@@ -22,24 +22,20 @@
                <div class="content">
                     <p>The following are examples of how to use the jQuery plugin.</p>
                     <ol class="example-list">
-                        <li><a href="slider1.html">Slider with all options enabled.</a></li>
-                        <li><a href="slider2.html">Slider with navigation arrows only.</a></li>
-                        <li><a href="slider3.html">Slider with navigation indicators only.</a></li>
+                        <li><a href="slider1.html">Slider with no options enabled, just the default settings.</a></li>
+                        <li><a href="slider2.html">Slider with all navigation options enabled.</a></li>
+                        <li><a href="slider3.html">Slider with navigation arrows only.</a></li>
+                        <li><a href="slider4.html">Slider with navigation indicators only.</a></li>
                     </ol>
                     <hr/>
                     <div>
                         <p>To eneable this add slider.css to the head of your page and/or add the SASS file slider.scss to your main SASS file.</p>
                         <p>Then add the slider.js file to where your JavaScript is loaded.  This plugin requires that jQuery already be loaded for fallback.</p>
-                        <p>To initialize the plugin add the following to your page below jQuery and the slider.js file.</p>
+                        <p>To initialize the plugin add the following to your page below jQuery and the slider.js file.  Options that can be used can be found listed below or on the example pages.</p>
                         <div class="example-code">
                             <pre>
                                 <code>
-                                    &nbsp;&nbsp;$('#replace-with-slider-id').slider({
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ssliderArrows: true,
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sliderNav: true,
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sliderCountDown: true,
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sliderPauseBtn: true
-                                    &nbsp;&nbsp;});       
+                                    &nbsp;&nbsp;$('#replace-with-slider-id').slider();       
                                 </code>
                             </pre>
                         </div>
@@ -52,15 +48,18 @@
                         <p><b>Default Options:</b></p>
                         <p>These are the default options that can be used for the plugin passed in to the options object.</p>
                         <ul class="options-list">
-                            <li>autoScroll: True or false.  Default is set to true.</li>
-                            <li>autoScrollTime: Time in mili-seconds.  Default is 10 seconds.</li>
-                            <li>direction: Left or right.  Default is left.</li>
-                            <li>sliderArrows: Optional property, either true or false.  Default is set to false.</li>
-                            <li>sliderCountDown: Optional property, either true or false.  Default is set to false.</li>
-                            <li>sliderNav: Optional property, either true or false.  Default is set to false.</li>
-                            <li>sliderNavType: Optional property if sliderNav is set to true.</li>
-                            <li>sliderPauseBtn: Optional property, either true or false.  Default is set to true.</li>
-                            <li>slideDuration: The speed of the animation.</li>
+                            <li><strong>autoScroll</strong>: True or false.  Default is set to true for slides to  automatically change.</li>
+                            <li><strong>autoScrollTime</strong>: The time in between each slide change.</li>
+                            <li><strong>duration</strong>: Specifies the number of milliseconds a transition animation should take to complete.  In other words the speed of the animation.</li>
+                            <li><strong>navigation</strong>: Weather or not any navigation options will show.</li>
+                            <li>
+                                <strong>navigationOptions</strong>: An object that contains all the options for navigation. All options are a boolean true/false value.<br/>
+                                &nbsp;&nbsp; - <strong>arrows</strong>: Indicates weather or not left or right arrows are showing.<br/>
+                                &nbsp;&nbsp; - <strong>countDown</strong>: This will display a countdown of how much time for a prarticular slide is left.<br/>
+                                &nbsp;&nbsp; - <strong>indicators</strong>: This will show idicators that show what slide is current and allow the user to chose a particular slide.<br/>
+                                &nbsp;&nbsp; - <strong>pauseBtn</strong>: A button that allows the user to pause the slide show will be displayed.<br/>
+                            </li>
+                            <li><strong>pauseOnHover</strong>: Will pause the slide show when a user hovers over an image.</li>
                         </ul>
                     </div>
             </main>        

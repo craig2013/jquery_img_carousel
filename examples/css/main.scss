@@ -55,7 +55,7 @@ body {
 				.example-list {
 					list-style-type: decimal;
 					margin: 0 auto 15px auto;
-					width: 275px;
+					width: 400px;
 					li {
 						text-align: left;
 					}
@@ -65,9 +65,10 @@ body {
 					.options-list {
 						list-style-type: disc;
 						margin: 10px auto 0 auto;
-						width: 560px;
+						width: 940px;
 						li {
 							display: list-item;
+							margin: 0 0 10px 0;
 							text-align: left;
 						}
 					}

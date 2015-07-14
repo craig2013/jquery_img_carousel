@@ -89,7 +89,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('js-copy', ['copy']);	
 
 	grunt.loadNpmTasks('grunt-contrib-sass');
-	grunt.registerTask('defaultSass', ['sass']);
+	grunt.registerTask('css-sass', ['sass']);
 
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.registerTask('min-css', ['cssmin']);

@@ -6,6 +6,7 @@
 @import "includes/font-awesome/font-awesome";
 
 body{
+	overflow-x: hidden;
 	.wrapper {
 		//Begin slider genral styles
 		.slider {
@@ -64,45 +65,48 @@ body{
 					right: -100%;
 				}
 
-				/** Slider navigation arrows 
-				*
-				* Feel free to replace these with images.
-				* Or you can leave it as is.  I'm using font-awesome for the icons.
-				*
-				**/
-				.slider-arrow-left {
-					float: left;
-					font-size: 2em;
-					margin: 0 0 0 10px;
-					position: relative;
-					top: 50%;
-					z-index: 3;
-					.slider-btn-previous {
-						@extend .fa;
-						@extend .fa-chevron-left;
-						&:hover {
-							text-decoration: none !important;
-						}
-					}
-				}				
-				.slider-arrow-right {
-					float: right;
-					font-size: 2em;
-					margin: 0 10px 0 0;
-					position: relative;
-					top: 50%;
-					z-index: 3;
-					.slider-btn-next {
-						@extend .fa;
-						@extend .fa-chevron-right;
-						&:hover {
-							text-decoration: none !important;
-						}						
-					}
-				}
-
 				@include clearfix();					
 			}//end .slider-slides
+
+			/** Slider navigation arrows 
+			*
+			* Feel free to replace these with images.
+			* Or you can leave it as is.  I'm using font-awesome for the icons.
+			*
+			**/
+			.slider-arrow-left {
+				bottom: 0;
+				left: 0;
+				font-size: 2em;
+				position: absolute;
+				top: 45%;
+				width: 25px;
+				z-index: 3;
+				.slider-btn-previous {
+					@extend .fa;
+					@extend .fa-chevron-left;
+					&:hover {
+						text-decoration: none !important;
+					}
+				}				
+			}
+			.slider-arrow-right {
+				bottom: 0;
+				left: auto;
+				font-size: 2em;
+				position: absolute;
+				right: 0;
+				top: 45%; 
+				width: 25px;
+				z-index: 3;
+				.slider-btn-next {
+					@extend .fa;
+					@extend .fa-chevron-right;
+					&:hover {
+						text-decoration: none !important;
+					}
+				}					
+			}
 
 			.slider-nav {
 				display: block;

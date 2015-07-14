@@ -1,6 +1,6 @@
 {
   "name": "jquery-slider-plugin",
-  "version": "1.5.0",
+  "version": "1.6.1",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-copy": "^0.8.0",

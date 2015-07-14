@@ -7,82 +7,97 @@
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
         <title>Slider - Example 3</title>
-        <meta name="description" content="jQuery slider using bullets for navigation instead of numbers and also a longer auto scroll time."/>
+        <meta name="description" content="jQuery  slider with no navigation included."/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="stylesheet" href="css/main.css"/>
         <link rel="stylesheet" href="../dist/css/slider.css"/>
         <style>
+            .wrapper {
+                margin: 10px !important;
+            }
+
             #slider3 {
                 height: 400px;
                 max-width: 100%;
                 position: relative;
                 width: 900px;
-            }
+            }       
         </style>
     </head>
     <body>
         <div class="wrapper">
             <header>
-                <h1>Slider With Navigation Indicators Only</h1>
-                <p>(Also a longer auto scroll time used and bullets used for the navigation indicators. )</p>
+                <h1>Slider With Navigation Arrows Only</h1>
                 <hr/>
             </header>
             <main>
-                        <!-- begin basic example with bullets as navigation -->
-                        <div class="slider" id="slider3">
-                            <div class="slider-slides">
-                                    <div class="slider-slide active-slide"  data-slideNumber="1">
-                                        <img src="img/slide1.png" alt="Slide 1 placeholder image"/>
-                                    </div>
-                                    <div class="slider-slide" data-slideNumber="2">
-                                        <img src="img/slide2.png" alt="Slide 2 placeholder image"/>
-                                    </div>
-                                    <div class="slider-slide" data-slideNumber="3">
-                                        <img src="img/slide3.png" alt="Slide 3 placeholder image"/>
-                                    </div>    
-                            </div>   
 
-                            <div class="slider-nav">
-                                <ol class="slider-indicators bullets">
-                                    <li class="slider-indicator slider-highlight-slide" data-slideNumber="1"> </li>
-                                    <li class="slider-indicator" data-slideNumber="2"> </li>
-                                    <li class="slider-indicator" data-slideNumber="3"> </li>
-                                </ol>              
-                            </div>         
-                        </div>        
+                <!-- begin basic example with no navigation -->
+                <div class="slider" id="slider3">
 
-                        <!-- end basic example with bullets as navigation -->   
-            
-                        <div class="content">
-                            <p>This is a basic slider with the navigation displayed using bullets and a longer duration in between slides  set.</p>
-                            <p>The plugin can be initialized this way by the following:</p>
+                    <div class="slider-slides">
 
-                            <div class="example-code">
-                                <pre>
-                                    <code>
-                                        &nbsp;&nbsp;$(function(){
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$('#slider3').slider({
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;autoScrollTime: 20000,
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sliderNav: true
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});          
-                                        &nbsp;&nbsp;});
-                                    </code>
-                                </pre>
+                            <div class="slider-slide active-slide"  data-slideNumber="1">
+                                <img src="img/slide1.png" alt="Slide 1 placeholder image"/>
                             </div>
 
+                            <div class="slider-slide" data-slideNumber="2">
+                                <img src="img/slide2.png" alt="Slide 2 placeholder image"/>
+                            </div>
+
+                            <div class="slider-slide" data-slideNumber="3">
+                                <img src="img/slide3.png" alt="Slide 3 placeholder image"/>
+                            </div>                               
+
+                    </div>          
+
+                        <div class="slider-arrow-left">
+                            <a href="#previous" class="slider-btn-previous"></a>
                         </div>
+
+                        <div class="slider-arrow-right">
+                            <a href="#next" class="slider-btn-next"></a>
+                        </div> 
+
+                </div>        
+                <!-- end basic example with no navigation -->   
+
+                <div class="content">
+                    <p>This is a basic slider with no navigation included.</p>
+
+
+                    <p>The basic version of the plugin can be initialzed by using the following:</p>
+
+                    <div class="example-code">
+                        <pre>
+                            <code>
+                                &nbsp;&nbsp;&nbsp;&nbsp;$('#slider3').slider({
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;navigation: true,
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;navigationOptions: {
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arrows: true
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                                &nbsp;&nbsp;&nbsp;&nbsp;});        
+                            </code>
+                        </pre>
+                    </div>
+
+                </div>
             </main>
-        </div>            
+
+        </div>    
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
         <script>window.jQuery || document.write('<script src="../src/lib/jquery-2.1.3.js"><\/script>')</script>
-        <script src="../dist/js/slider.js"></script>
+        <script src="../dist/js/slider.min.js"></script>
         <script>
-            $(function(){
+            $(function() { 
                 $('#slider3').slider({
-                    autoScrollTime: 20000,
-                    sliderNav: true
-                });          
+                    autoScroll: true,
+                    navigation: true,
+                    navigationOptions: {
+                        arrows: true
+                    }
+                });        
             });
         </script>
     </body>

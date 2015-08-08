@@ -4,6 +4,10 @@
 @import "../../src/css/sass/includes/mixins";
 
 body {
+	hr {
+		width: 70%;
+	}	 
+	
 	font-family: arial,  helvetica, sans-serif;
 	font-size: 1em;
 	a {
@@ -22,9 +26,6 @@ body {
 			h1 {
 				font-size: 2em;
 			}
-			hr {
-				width: 70%;
-			}
 			@include clearfix();
 		}//end #main-header	
 		main {
@@ -39,16 +40,92 @@ body {
 
 
 				.example-code {
+					background-color: #1b2426 !important;
+					border: 1px solid #ccc;
+					border-radius: 4px;		
+					font-size: 1em;			
 					margin: 0 auto;
-					text-align: left;
-					width: 70%;
-					pre {
-						background-color: #f5f5f5;
-						border: 1px solid #ccc;
-						border-radius: 4px;
-						font-size: 13px;
-						padding: 9.5px;
-						white-space: pre-wrap;
+					text-align: left;					
+					@include media(tablet) {
+						font-size: 1.5em;
+						padding: 5px;
+						width: 70%;
+					}
+					@include media(mediumDesktop) {
+						font-size: 1.5em;
+						padding: 5px;
+						width: 70%;
+					}         
+					@include media(largeDesktop) {
+						font-size: 1.5em;
+						padding: 5px;
+						width: 70%;
+					} 					
+					.example-code-table {
+						border: 0;
+						margin: 0 auto;
+						width: 370px;
+						@include media(tablet) {
+							width: 100%;
+						}
+						@include media(mediumDesktop) {
+							width: 100%;
+						}         
+						@include media(largeDesktop) {
+							width: 100%;
+						} 						
+						tbody {
+							tr {
+								.gutter {
+									color: #afafaf !important;
+									width: auto !important;
+									.line-number {
+										border-right: 3px solid #435a5f !important;
+									}
+								}
+								.code {
+									padding: 0 0 0 15px;
+									span {
+										display: inline-block;
+										margin: 0;
+										padding: 0 !important;								
+									}
+									.keyword {
+										color: #5ba1cf !important;
+									}			
+									.plain {
+										color: #b9bdb6 !important;
+									}	
+									.string {
+										color: #5ce638 !important;
+									}
+									.code-indent { 
+										padding: 0 0 0 50px;
+										@include media(tablet) {
+											padding: 0 0 0 85px;
+										}
+										@include media(mediumDesktop) {
+											padding: 0 0 0 85px;
+										}         
+										@include media(largeDesktop) {
+											padding: 0 0 0 85px;
+										} 										
+									}
+									.code-indent-more {
+										padding: 0 0 0 90px;
+										@include media(tablet) {
+											padding: 0 0 0 140px;
+										}
+										@include media(mediumDesktop) {
+											padding: 0 0 0 140px;
+										}         
+										@include media(largeDesktop) {
+											padding: 0 0 0 140px;
+										} 										
+									}	 	  				
+								}
+							}
+						}
 					}
 				}
 

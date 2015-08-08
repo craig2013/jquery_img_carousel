@@ -108,6 +108,9 @@ body {
   font-family: arial,  helvetica, sans-serif;
   font-size: 1em;
 }
+body hr {
+  width: 70%;
+}
 body a {
   text-decoration: none;
 }
@@ -126,9 +129,6 @@ body .wrapper header {
 body .wrapper header h1 {
   font-size: 2em;
 }
-body .wrapper header hr {
-  width: 70%;
-}
 body .wrapper header::after {
   clear: both;
   content: "";
@@ -143,17 +143,125 @@ body .wrapper main .content p {
   text-align: center;
 }
 body .wrapper main .content .example-code {
-  margin: 0 auto;
-  text-align: left;
-  width: 70%;
-}
-body .wrapper main .content .example-code pre {
-  background-color: #f5f5f5;
+  background-color: #1b2426 !important;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 13px;
-  padding: 9.5px;
-  white-space: pre-wrap;
+  font-size: 1em;
+  margin: 0 auto;
+  text-align: left;
+  /* Small devices (tablets, >= 768px and <= 991px) */
+  /* Medium devices (desktops, >= 992px and <= 1100px) */
+  /* Large devices (large desktops, 1200px and up) */
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  body .wrapper main .content .example-code {
+    font-size: 1.5em;
+    padding: 5px;
+    width: 70%;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  body .wrapper main .content .example-code {
+    font-size: 1.5em;
+    padding: 5px;
+    width: 70%;
+  }
+}
+@media (min-width: 1200px) {
+  body .wrapper main .content .example-code {
+    font-size: 1.5em;
+    padding: 5px;
+    width: 70%;
+  }
+}
+body .wrapper main .content .example-code .example-code-table {
+  border: 0;
+  margin: 0 auto;
+  width: 370px;
+  /* Small devices (tablets, >= 768px and <= 991px) */
+  /* Medium devices (desktops, >= 992px and <= 1100px) */
+  /* Large devices (large desktops, 1200px and up) */
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  body .wrapper main .content .example-code .example-code-table {
+    width: 100%;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  body .wrapper main .content .example-code .example-code-table {
+    width: 100%;
+  }
+}
+@media (min-width: 1200px) {
+  body .wrapper main .content .example-code .example-code-table {
+    width: 100%;
+  }
+}
+body .wrapper main .content .example-code .example-code-table tbody tr .gutter {
+  color: #afafaf !important;
+  width: auto !important;
+}
+body .wrapper main .content .example-code .example-code-table tbody tr .gutter .line-number {
+  border-right: 3px solid #435a5f !important;
+}
+body .wrapper main .content .example-code .example-code-table tbody tr .code {
+  padding: 0 0 0 15px;
+}
+body .wrapper main .content .example-code .example-code-table tbody tr .code span {
+  display: inline-block;
+  margin: 0;
+  padding: 0 !important;
+}
+body .wrapper main .content .example-code .example-code-table tbody tr .code .keyword {
+  color: #5ba1cf !important;
+}
+body .wrapper main .content .example-code .example-code-table tbody tr .code .plain {
+  color: #b9bdb6 !important;
+}
+body .wrapper main .content .example-code .example-code-table tbody tr .code .string {
+  color: #5ce638 !important;
+}
+body .wrapper main .content .example-code .example-code-table tbody tr .code .code-indent {
+  padding: 0 0 0 50px;
+  /* Small devices (tablets, >= 768px and <= 991px) */
+  /* Medium devices (desktops, >= 992px and <= 1100px) */
+  /* Large devices (large desktops, 1200px and up) */
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  body .wrapper main .content .example-code .example-code-table tbody tr .code .code-indent {
+    padding: 0 0 0 85px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  body .wrapper main .content .example-code .example-code-table tbody tr .code .code-indent {
+    padding: 0 0 0 85px;
+  }
+}
+@media (min-width: 1200px) {
+  body .wrapper main .content .example-code .example-code-table tbody tr .code .code-indent {
+    padding: 0 0 0 85px;
+  }
+}
+body .wrapper main .content .example-code .example-code-table tbody tr .code .code-indent-more {
+  padding: 0 0 0 90px;
+  /* Small devices (tablets, >= 768px and <= 991px) */
+  /* Medium devices (desktops, >= 992px and <= 1100px) */
+  /* Large devices (large desktops, 1200px and up) */
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  body .wrapper main .content .example-code .example-code-table tbody tr .code .code-indent-more {
+    padding: 0 0 0 140px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  body .wrapper main .content .example-code .example-code-table tbody tr .code .code-indent-more {
+    padding: 0 0 0 140px;
+  }
+}
+@media (min-width: 1200px) {
+  body .wrapper main .content .example-code .example-code-table tbody tr .code .code-indent-more {
+    padding: 0 0 0 140px;
+  }
 }
 body .wrapper main .content .example-list {
   list-style-type: decimal;

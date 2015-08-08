@@ -9,18 +9,22 @@ body{
 	overflow-x: hidden;
 	.wrapper {
 		//Begin slider genral styles
+		margin: 0 auto 0;
+		position: relative;
+		width: 98%;
 		.slider {
 			height: 100%;
 			margin: 0 auto 30px auto;
+			overflow: hidden;
 			position: relative;
 			text-align: center;
 			width: 100%;					
 			.slider-slides {
 				height: 100%;
 				left: 0;
-				overflow: hidden;
-				position: relative;
+				position: absolute;
 				top: 0;
+				width: 100%;
 				.slider-slide {
 					bottom: 0;
 					height: 100%;
@@ -64,7 +68,6 @@ body{
 					left: auto;
 					right: -100%;
 				}
-
 				@include clearfix();					
 			}//end .slider-slides
 
@@ -109,11 +112,12 @@ body{
 			}
 
 			.slider-nav {
+				bottom: 0;
 				display: block;
-				height: 15px;
-				position: relative;
+				height: 30px;
+				position: absolute;
 				width: 100%;
-
+				z-index: 4;
 				.slider-left-nav {
 				    float: left;
 			    	}//end .slider-left-nav

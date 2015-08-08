@@ -10,11 +10,8 @@
         <meta name="description" content="jQuery  slider with no navigation included."/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="stylesheet" href="css/main.css"/>
-        <link rel="stylesheet" href="../dist/css/slider.css"/>
+        <link rel="stylesheet" href="../dist/css/slider.min.css"/>
         <style>
-            .wrapper {
-                margin: 10px !important;
-            }
 
             #slider3 {
                 height: 400px;
@@ -32,56 +29,76 @@
             </header>
             <main>
 
-                <!-- begin basic example with no navigation -->
-                <div class="slider" id="slider3">
+                    <!-- begin basic example with no navigation -->
+                    <div class="slider" id="slider3">
 
-                    <div class="slider-slides">
+                        <div class="slider-slides">
 
-                            <div class="slider-slide active-slide"  data-slideNumber="1">
-                                <img src="img/slide1.png" alt="Slide 1 placeholder image"/>
+                                    <div class="slider-slide active-slide"  data-slideNumber="1">
+                                        <img src="img/slide1.png" alt="Slide 1 placeholder image"/>
+                                    </div>
+
+                                    <div class="slider-slide" data-slideNumber="2">
+                                        <img src="img/slide2.png" alt="Slide 2 placeholder image"/>
+                                    </div>
+
+                                    <div class="slider-slide" data-slideNumber="3">
+                                        <img src="img/slide3.png" alt="Slide 3 placeholder image"/>
+                                    </div>   
+                
+
+                        </div>          
+
+                            <div class="slider-arrow-left">
+                                <a href="#previous" class="slider-btn-previous"></a>
                             </div>
 
-                            <div class="slider-slide" data-slideNumber="2">
-                                <img src="img/slide2.png" alt="Slide 2 placeholder image"/>
-                            </div>
+                            <div class="slider-arrow-right">
+                                <a href="#next" class="slider-btn-next"></a>
+                            </div> 
 
-                            <div class="slider-slide" data-slideNumber="3">
-                                <img src="img/slide3.png" alt="Slide 3 placeholder image"/>
-                            </div>                               
+                    </div>        
+                    <!-- end basic example with no navigation -->   
 
-                    </div>          
-
-                        <div class="slider-arrow-left">
-                            <a href="#previous" class="slider-btn-previous"></a>
-                        </div>
-
-                        <div class="slider-arrow-right">
-                            <a href="#next" class="slider-btn-next"></a>
-                        </div> 
-
-                </div>        
-                <!-- end basic example with no navigation -->   
-
-                <div class="content">
-                    <p>This is a basic slider with no navigation included.</p>
+                    <div class="content">
+                        <p>This is a basic slider with no navigation included.</p>
 
 
-                    <p>The basic version of the plugin can be initialzed by using the following:</p>
+                        <p>The basic version of the plugin can be initialzed by using the following:</p>
 
-                    <div class="example-code">
-                        <pre>
                             <code>
-                                &nbsp;&nbsp;&nbsp;&nbsp;$('#slider3').slider({
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;navigation: true,
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;navigationOptions: {
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arrows: true
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
-                                &nbsp;&nbsp;&nbsp;&nbsp;});        
+                                <div class="example-code">
+                                    <table class="example-code-table">
+                                        <tbody>
+                                            <tr>
+                                                <td class="gutter">
+                                                    <div class="line-number">1</div>
+                                                    <div class="line-number">2</div>
+                                                    <div class="line-number">3</div>
+                                                    <div class="line-number">4</div>
+                                                    <div class="line-number">5</div>
+                                                    <div class="line-number">6</div>
+                                                </td> 
+                                                <td class="code">
+                                                            <div>
+                                                                    <span class="plain">$(</span>
+                                                                    <span class="string">'#your-slider-id'</span>
+                                                                    <span class="plain">).slider({</span>
+                                                            </div>
+                                                            <div class="code-indent"><span class="plain">navigation: true,</span></div>
+                                                            <div class="code-indent"><span class="plain">navigationOptions: {</span></div>
+                                                            <div class="code-indent-more"><span class="plain">arrows: true</span></div>
+                                                            <div class="code-indent"><span class="plain">}</span></div>               
+                                                            <div><span class="plain">}); </span></div>        
+                                                </td>                                           
+                                            </tr>                                      
+                                        </tbody>
+                                    </table>
+                                </div>
                             </code>
-                        </pre>
+
                     </div>
 
-                </div>
             </main>
 
         </div>    

@@ -3,7 +3,7 @@
 	"authors": [
 		"Craig Stroman (http://www.stromannet.com)"
 	],
-	"version": "1.5.0",
+	"version": "1.7.1",
 	"main":  [
 		"dist/js/slider.js",
 		"dist/css/slider.css"

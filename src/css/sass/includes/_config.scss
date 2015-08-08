@@ -6,3 +6,13 @@ $image-path: '../images/';
 
 //animation
 $global-transition-duration: .3s;
+
+
+//Screen min variables
+$screen-sm-min: 768px;
+$screen-md-min: 992px;
+$screen-lg-min: 1200px;
+
+//Screen max variables
+$screen-sm-max: $screen-md-min - 1;
+$screen-md-max: $screen-lg-min - 1;

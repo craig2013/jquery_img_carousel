@@ -7,7 +7,7 @@
         defaults = { //Plugin options with default values
             autoScroll: true,
             autoScrollTime: 10000,
-            duration: 900,
+            duration: 600,
             navigation: false,
             navigationOptions: {
                 arrows: false,
@@ -33,12 +33,21 @@
 
         init: function () {
 
+            //Set the activeSlide to the first slide
+            this.$activeSlide = $( this.element ).find( '.slider-slides .slider-slide' ).eq( 0 );
 
+            //Set the current slide number
+            this.currentSlideNumber = this.$activeSlide.attr( 'data-slideNumber' );
 
+            //Set the number of slides
+            this.totalSlides = $( this.element ).find( '.slider-slides .slider-slide' ).length;
+
+            //Enable auto scroll if it's enabled
             if ( this.options.autoScroll ) {
                 this.autoScroll();
             }
 
+            //If slider has navigation set bindings for navigation
             if ( this.options.navigation ) {
 
                 this.setBindings();
@@ -55,37 +64,45 @@
         setBindings: function () {
             var self = this;
 
-            $( this.element ).on( 'click', function ( e ) {
+            $( this.element ).find( '.slider-play-nav .slider-btn-play' ).on( 'click', function ( e ) {
                 e.preventDefault();
-                var $targetClicked = $( e.target );
 
-                if ( self.options.navigation ) { //slider nav is enabled
-                    if ( self.options.navigationOptions.pauseBtn ) { //slider pause btn is enabled
+                self.resumeAutoScroll();
+            } );
 
-                        if ( $targetClicked.hasClass( 'slider-btn-pause' ) ) { //slider pause btn is clicked
+            $( this.element ).find( '.slider-pause-nav .slider-btn-pause' ).on( 'click', function ( e ) {
+                e.preventDefault();
 
-                            self.pauseAutoScroll();
-                        } else if ( $targetClicked.hasClass( 'slider-btn-play' ) ) { //slider play btn is clicked
-                            self.resumeAutoScroll();
-                        }
-                    }
+                self.pauseAutoScroll();
+            } );
 
-                    if ( self.options.navigationOptions.indicators ) {
-                        if ( $targetClicked.hasClass( 'slider-indicator' ) ) { //slider nav number is clicked
-                            self.goToSlide( $targetClicked );
-                        }
-                    }
+            //Slider has slide indicators
+            $( this.element ).find( '.slider-indicators .slider-indicator' ).on( 'click', function ( e ) {
+                e.preventDefault();
+
+                self.goToSlide( $( this ) );
+            } );
+
+            //Slider has previous button enabled
+            $( this.element ).find( '.slider-arrow-left .slider-btn-previous' ).on( 'click', function ( e ) {
+                e.preventDefault();
+
+                if ( self.options.autoScroll ) {
+                    self.pauseAutoScroll();
                 }
 
-                if ( self.options.navigationOptions.arrows ) { //slider arrows is enabled
-                    if ( $targetClicked.hasClass( 'slider-btn-previous' ) ) { //slider btn previous is clicked
-                        self.previousSlide();
-                    } else if ( $targetClicked.hasClass( 'slider-btn-next' ) ) { //slider btn next is clicked
-                        self.nextSlide();
-                    }
+                self.previousSlide();
+            } );
 
+            //Slider has next button enabled
+            $( this.element ).find( '.slider-arrow-right .slider-btn-next' ).on( 'click', function ( e ) {
+                e.preventDefault();
+
+                if ( self.options.autoScroll ) {
+                    self.pauseAutoScroll();
                 }
 
+                self.nextSlide();
             } );
 
             if ( this.options.pauseOnHover ) {
@@ -105,13 +122,11 @@
         },
 
         setTimer: function () {
-            var self = this;
-
             window.clearInterval( this.intervalId );
 
             this.intervalId = setInterval( function () {
-                self.nextSlide();
-            }, this.options.autoScrollTime );
+                this.nextSlide();
+            }.bind( this ), this.options.autoScrollTime );
         },
 
         pauseTimer: function () {
@@ -123,7 +138,6 @@
         },
 
         updateCounter: function ( seconds ) {
-            var self = this;
             var countDownTime = parseInt( this.options.autoScrollTime, 10 ) / 1000;
 
             if ( seconds === 0 ) {
@@ -134,8 +148,8 @@
             window.clearTimeout( this.counterId );
 
             this.counterId = setTimeout( function () {
-                self.updateCounter( seconds - 1 );
-            }, 1000 );
+                this.updateCounter( seconds - 1 );
+            }.bind( this ), 1000 );
 
             $( this.element ).find( '.slider-nav .slider-right-nav .slider-countdown' ).empty().text( seconds );
         },
@@ -172,33 +186,28 @@
         },
 
         previousSlide: function () {
-            var currentSlideNumber = $( this.element ).find( '.slider-slides .slider-slide.active-slide' ).data( 'slidenumber' );
-            var previousSlideNumber = $( this.element ).find( '.slider-slides .slider-slide.active-slide' ).prev().data( 'slidenumber' );
-            var $activeSlide = $( this.element ).find( '.slider-slides .slider-slide.active-slide[data-slideNumber="' + currentSlideNumber + '"]' );
-            var $previousSlide = '';
-
-            if ( previousSlideNumber === undefined ) {
-                previousSlideNumber = $( this.element ).find( '.slider-slides .slider-slide' ).length;
+            if ( this.currentSlideNumber > 1 ) {
+                this.currentSlideNumber--;
+            } else {
+                this.currentSlideNumber = 3;
             }
 
-            $previousSlide = $( this.element ).find( '.slider-slides .slider-slide[data-slideNumber="' + previousSlideNumber + '"]' );
+            var $nextSlide = $( this.element ).find( '.slider-slides .slider-slide[data-slideNumber="' + this.currentSlideNumber + '"]' );
 
-            this.animateSlide( $activeSlide, $previousSlide );
+            this.animateSlide( this.$activeSlide, $nextSlide );
         },
 
         nextSlide: function () {
-            var currentSlideNumber = $( this.element ).find( '.slider-slides .slider-slide.active-slide' ).data( 'slidenumber' );
-            var nextSlideNumber = $( this.element ).find( '.slider-slides .slider-slide.active-slide' ).next().data( 'slidenumber' );
-            var $activeSlide = $( this.element ).find( '.slider-slides .slider-slide.active-slide[data-slideNumber="' + currentSlideNumber + '"]' );
-            var $nextSlide = '';
-
-            if ( nextSlideNumber === undefined ) {
-                nextSlideNumber = 1;
+            if ( this.currentSlideNumber < this.totalSlides ) {
+                this.currentSlideNumber++;
+            } else {
+                this.currentSlideNumber = 1;
             }
 
-            $nextSlide = $( this.element ).find( '.slider-slides .slider-slide[data-slideNumber="' + nextSlideNumber + '"]' );
+            var $nextSlide = $( this.element ).find( '.slider-slides .slider-slide[data-slideNumber="' + this.currentSlideNumber + '"]' );
 
-            this.animateSlide( $activeSlide, $nextSlide );
+
+            this.animateSlide( this.$activeSlide, $nextSlide );
         },
 
         goToSlide: function ( $slideClicked ) {
@@ -247,11 +256,8 @@
         },
 
         cssAnimation: function ( $activeSlide, $nextSlide ) {
-            var self = this;
             var slideDirection = 'right';
-            var slideDuration = this.options.duration.toString() + 'ms';
 
-            $nextSlide.addClass( 'slider-slide-right' );
 
             /**
              *
@@ -260,16 +266,12 @@
              **/
 
             //Animate next slide to the right so it will slide in to the left
-            var animateTimeOut = setTimeout( function () {
 
-                $( self.element ).addClass( 'slider-transition' );
+            setTimeout( function () {
 
-                $( self.element ).find( '.slider-slides .slider-slide' ).css( {
-                    'transition-duration': slideDuration,
-                    '-webkit-transition-duration': slideDuration,
-                    '-moz-transition-duration': slideDuration,
-                    '-o-transition-duration': slideDuration
-                } );
+                $( this.element ).addClass( 'slider-transition' );
+
+                this.addCSSDuration();
 
                 $activeSlide.addClass( 'slider-shift-' + slideDirection );
 
@@ -277,25 +279,50 @@
             }.bind( this ), 100 );
 
             //Remove styles and classes that had been added
-            var cleanUpTimeOut = setTimeout( function () {
+            //This timout speed has to be less than 1 second or 1000
+            setTimeout( function () {
 
-                $activeSlide.removeClass( 'active-slide slider-shift-' + slideDirection );
+                $( this.element ).removeClass( 'slider-transition' );
 
-                $nextSlide.removeClass( 'slider-slide-right' );
+                $activeSlide.removeClass( 'active-slide' );
+                $activeSlide.removeClass( 'slider-shift-' + slideDirection );
 
-                $( self.element ).removeClass( 'slider-transition' );
+                var activeSlideNumber = $activeSlide.attr( 'data-slideNumber' );
 
-                $( self.element ).find( '.slider-slides .slider-slide' ).attr( 'style', '' );
+                this.removeCSSDuration();
 
-                if ( self.options.autoScroll ) {
-                    self.setTimer();
+                this.resetCSSAnimation( activeSlideNumber );
+
+                if ( this.options.autoScroll ) {
+                    this.setTimer();
                 }
 
-                if ( self.options.navigation ) {
-                    self.update( $activeSlide, $nextSlide );
+                if ( this.options.navigation ) {
+                    this.update( $activeSlide, $nextSlide );
                 }
 
-            }.bind( this ), 1100 );
+            }.bind( this ), 600 );
+
+            this.$activeSlide = $( this.element ).find( '.slider-slides .slider-slide' ).eq( this.currentSlideNumber - 1 );
+        },
+
+        addCSSDuration: function () {
+            var slideDuration = this.options.duration.toString() + 'ms';
+            $( this.element ).find( '.slider-slides .slider-slide' ).each( function () {
+                $( this ).css( 'transition-duration', slideDuration );
+            } );
+        },
+
+        removeCSSDuration: function () {
+            $( this.element ).find( '.slider-slides .slider-slide' ).each( function () {
+                $( this ).css( 'transition-duration', '' );
+            } );
+        },
+
+        resetCSSAnimation: function ( activeSlideNumber ) {
+            var $newActiveSlide = $( this.element ).find( '.slider-slides .slider-slide[data-slideNumber="' + activeSlideNumber + '"]' ).clone( true );
+
+            $( this.element ).find( '.slider-slides .slider-slide[data-slideNumber="' + activeSlideNumber + '"]' ).replaceWith( $newActiveSlide );
         },
 
         jsAnimation: function ( $activeSlide, $nextSlide ) {

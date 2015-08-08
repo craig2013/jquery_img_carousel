@@ -12,14 +12,19 @@ Have you found a bug?  Please open an issue.
 
 ##Version History
 
+######Version 1.7.1
+- Added a function to reset the CSS animation after it occours.
+- Changed how the  binding is set within the the setBindings method.
+- Improved the next and previous slide methods.
+- Added some more documentation.
+
 ######Version 1.6.1
 - Added pause on hover.
 - Changed how some of the options are defined.
 - Added some more documentation.
 - Bugs Fixed:
-   - Fixed an issue with the arrows.
-
-
+   - Fixed an issue with the navigation arrows.
+   
 ######Version 1.5.0
 - Added more documentation
 - Removed requirement for Modernizr and now using a function to test for CSS transition support.

@@ -9,7 +9,6 @@
         <title>jQuery Slider Plugin</title>
         <meta name="description" content="jQuery slider plugin."/>
         <meta name="viewport" content="width=device-width"/>
-        <script src="../src/lib/modernizr-2.8.3.js"></script>
         <link rel="stylesheet" href="css/main.css"/>
     </head>
     <body>
@@ -32,13 +31,27 @@
                         <p>To eneable this add slider.css to the head of your page and/or add the SASS file slider.scss to your main SASS file.</p>
                         <p>Then add the slider.js file to where your JavaScript is loaded.  This plugin requires that jQuery already be loaded for fallback.</p>
                         <p>To initialize the plugin add the following to your page below jQuery and the slider.js file.  Options that can be used can be found listed below or on the example pages.</p>
-                        <div class="example-code">
-                            <pre>
-                                <code>
-                                    &nbsp;&nbsp;$('#replace-with-slider-id').slider();       
-                                </code>
-                            </pre>
-                        </div>
+                        <code>
+                            <div class="example-code">
+                                <table class="example-code-table">
+                                    <tbody>
+                                        <tr>
+                                            <td class="gutter">
+                                                <div class="line-number">1</div>
+                                            </td> 
+                                            <td class="code">
+                                                <div class="js-language">
+                                                     &nbsp;&nbsp;
+                                                     <span class="plain">$(</span>
+                                                     <span class="string">'#your-slider-id'</span>
+                                                     <span class="plain">).slider();</span>
+                                                </div>
+                                            </td>                                           
+                                        </tr>                                      
+                                    </tbody>
+                                </table>
+                            </div>
+                        </code>
                         <p>You can change the options within the options object based on the options you want.</p>
                         <p>To see the options available look at the demo pages above.</p>
                         <p>The CSS can be overided to fit your needs. Just place it in a seperate CSS or SASS file so updates don't override your changes.</p>

@@ -2453,9 +2453,15 @@ img {
 body {
   overflow-x: hidden;
 }
+body .wrapper {
+  margin: 0 auto 0;
+  position: relative;
+  width: 98%;
+}
 body .wrapper .slider {
   height: 100%;
   margin: 0 auto 30px auto;
+  overflow: hidden;
   position: relative;
   text-align: center;
   width: 100%;
@@ -2469,9 +2475,9 @@ body .wrapper .slider {
 body .wrapper .slider .slider-slides {
   height: 100%;
   left: 0;
-  overflow: hidden;
-  position: relative;
+  position: absolute;
   top: 0;
+  width: 100%;
   /** CSS Animation styles
   *
   * Sets up slide to be animated into view.
@@ -2543,10 +2549,12 @@ body .wrapper .slider .slider-arrow-right .slider-btn-next:hover {
   text-decoration: none !important;
 }
 body .wrapper .slider .slider-nav {
+  bottom: 0;
   display: block;
-  height: 15px;
-  position: relative;
+  height: 30px;
+  position: absolute;
   width: 100%;
+  z-index: 4;
   /**
   * Main slider indictator CSS
   * Feel free to override this.

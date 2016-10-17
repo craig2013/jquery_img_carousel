@@ -1,8 +1,9 @@
-.sass-cache/
-css/.sass-cache/
-examples/css/.sass-cache/
-src/css/.sass-cache/
-node_modules/
+/sass-cache/
+/css/.sass-cache/
+/examples/css/.sass-cache/
+/src/css/.sass-cache/
+/node_modules/
+/dist/
 Gruntfile.js
 package.json
 slider-image.psd

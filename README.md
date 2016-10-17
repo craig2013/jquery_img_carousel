@@ -6,11 +6,23 @@ You can override the styles with your own and/or combine the CSS files into your
 
 You can now install this with Bower using 'jquery-slider-plugin-cs'.
 
+##Running Locally
+- git clone https://github.com/craigstroman/jquery_slider.git.
+- Then cd jquery_slider.
+- Install modules with NPM by running NPM install.
+- Start your local server.
+- To create a new build run gulp build in a new terminal window and the build will be located in the dist directory.
+
 For more documentation go to http://jquery-slider.stromannet.com/
 
 Have you found a bug?  Please open an issue.
 
 ##Version History
+
+######Version 1.8.1
+- Switched to using Gulp for task automation.
+- Added Eslint for JavaScript linting.
+- Starting to clean up directory structure.
 
 ######Version 1.7.1
 - Added a function to reset the CSS animation after it occours.
